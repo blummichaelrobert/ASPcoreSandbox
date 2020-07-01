@@ -1,0 +1,6 @@
+﻿
+https://dev.to/dileno/build-a-simple-crud-app-with-angular-8-and-asp-net-core-2-2-part-1-back-end-39e1
+
+https://www.codaffection.com/asp-net-core-article/angular-crud-with-asp-net-core-web-api/
+
+https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7
