@@ -1,0 +1,132 @@
+
+<div class="row"> 
+    <div class="col-4">
+        <div class="panel panel-default">
+            <h3>Pick Key:</h3>
+            <google-chart id="keyPickerChart"
+                          [type]="keyPickerVisual.type"
+                          [data]="this.keyPickerVisual.data"
+                          [options]="keyPickerVisual.googleChartOptions"
+                          (select)="handleKeySelected($event)">
+            </google-chart>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button"
+                        [ngClass]="showingCircleOf5ths ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleShowCircleByPerfect5ths()">
+                    〇 of 5ths
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.showingMajorKey ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleKeyVersionSelected('major')">
+                    Major
+                </button>
+                <button type="button"
+                        [ngClass]="!musicService.showingMajorKey ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleKeyVersionSelected('minor')">
+                    Minor
+                </button>
+            </div>
+         </div>
+     </div>
+    <div class="col-4">
+        <div class="panel panel-default">
+            <h3 *ngIf="musicService.showingMajorKey">{{musicService.rootNote}} Major Key:</h3>
+            <h3 *ngIf="!musicService.showingMajorKey">{{musicService.rootNote}} Minor Key:</h3>
+            <google-chart #scaleChart
+                          [type]="musicKeyVisual.type"
+                          [data]="musicKeyVisual.data"
+                          [options]="musicKeyVisual.googleChartOptions"
+                          (select)="handleIntervalSelectedFromChart($event)">
+            </google-chart>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button type="button"
+                        *ngIf="musicService.showingMajorKey"
+                        [ngClass]="musicService.intervalState.showingRoot ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingRoot', 0)">
+                    R
+                </button>
+                <button type="button"
+                        *ngIf="!musicService.showingMajorKey"
+                        [ngClass]="musicService.intervalState.showingRoot ?'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingRoot', 0)">
+                    r
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMinor2 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMinor2', 1)">
+                    m2
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMajor2 ?'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMajor2', 2)">
+                    M2
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMinor3 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMinor3', 3)">
+                    m3
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMajor3 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMajor3', 4)">
+                    M3
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingPerfect4 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingPerfect4', 5)">
+                    P4
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingDim5 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingDim5', 6)">
+                    d5
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingPerfect5 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingPerfect5', 7)">
+                    P5
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMinor6 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMinor6', 8)">
+                    m6
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMajor6 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMajor6', 9)">
+                    M6
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMinor7 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMinor7', 10)">
+                    m7
+                </button>
+                <button type="button"
+                        [ngClass]="musicService.intervalState.showingMajor7 ? 'music-btn-pressed' : 'music-btn'"
+                        (click)="handleIntervalClick('showingMajor7', 11)">
+                    M7
+                </button>
+            </div>
+        </div>         
+    </div>
+    <div class="col-4">
+        <div style="height: 32%"
+             class="panel panel-default">
+            <p>key info?</p>
+        </div>
+        <div style="height: 68%"
+             class="panel panel-default">
+            <chord-progression [musicKey]="musicService.musicKey$ | async"
+                               [showingMajorKey]="musicService.showingMajorKey"></chord-progression>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <fretboard [musicKey]="musicService.musicKey$ | async"
+                   [intervalState]="musicService.intervalState"></fretboard>
+    </div>
+</div>
+
+
