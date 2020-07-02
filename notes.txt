@@ -22,3 +22,5 @@ https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21
 	TODO:
 	Fix major 6 and 7 interval buttons not working
 		did i port all the latest code?
+
+	Fix Music CSS	
