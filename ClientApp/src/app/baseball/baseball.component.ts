@@ -11,14 +11,10 @@ import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
 export class BaseballComponent {
 
     myData = [
-        ['London', 8136000],
-        ['New York', 8538000],
-        ['Paris', 2244000],
-        ['Berlin', 3470000],
-        ['Kairo', 19500000]
+        ['Mike Trout', 'CF', '6-2, 235 lbs', 0.291, 45, 104, 1.083, 137, 27, 2]
     ];
 
-    chartColumns = ['City', 'Inhabitants'];
+    chartColumns = ['Player Info', 'Positon', 'Ht/Wt', 'BA', 'HR', 'RBI', 'OPS', 'H', '2B', '3B'];
 
     constructor(private baseballHTTPService: BaseballHTTPService) { }
 
