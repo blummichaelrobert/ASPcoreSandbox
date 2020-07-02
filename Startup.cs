@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sandbox.Data;
+using Sandbox.EFCore;
 
 namespace Sandbox
 {
@@ -28,6 +30,11 @@ namespace Sandbox
 			{
 				configuration.RootPath = "ClientApp/dist";
 			});
+
+		    services.AddDbContext<MoviesContext>(options =>
+		            options.UseSqlServer(Configuration.GetConnectionString("MoviesContext")));
+
+			services.AddScoped<EFCoreMovieRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

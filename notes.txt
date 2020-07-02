@@ -4,3 +4,17 @@ https://dev.to/dileno/build-a-simple-crud-app-with-angular-8-and-asp-net-core-2-
 https://www.codaffection.com/asp-net-core-article/angular-crud-with-asp-net-core-web-api/
 
 https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7
+	The relationship is as follows:
+		Controller -> EF Core -> SQL Server
+	Now, we will add a repository between the controller and EF Core as an abstraction layer and will turn the relation into:
+		Controller -> Repository -> EF Core -> SQL Server
+
+	Migrations lets us create a database that matches our data model and update the database schema when our data model changes.
+
+	A Repository mediates between the domain and data mapping layers, acting like an in-memory domain object collection. 
+	Client objects construct query specifications declaratively and submit them to Repository for satisfaction. 
+	Objects can be added to and removed from the Repository, as they can from a simple collection of objects, 
+	and the mapping code encapsulated by the Repository will carry out the appropriate operations behind the scenes. 
+	Conceptually, a Repository encapsulates the set of objects persisted in a data store and the operations performed over them, 
+	providing a more object-oriented view of the persistence layer.
+	Repository also supports the objective of achieving a clean separation and one-way dependency between the domain and data mapping layers.
