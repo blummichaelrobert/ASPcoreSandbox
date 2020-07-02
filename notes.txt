@@ -18,3 +18,7 @@ https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21
 	Conceptually, a Repository encapsulates the set of objects persisted in a data store and the operations performed over them, 
 	providing a more object-oriented view of the persistence layer.
 	Repository also supports the objective of achieving a clean separation and one-way dependency between the domain and data mapping layers.
+
+	TODO:
+	Fix major 6 and 7 interval buttons not working
+		did i port all the latest code?
