@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyMDB.Models;
-using Sandbox.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sandbox.EFCore;
+using Sandbox.Models;
 
 namespace Sandbox.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MoviesController : BaseController<Movie, EFCoreMovieRepository>
+    public class BaseballPlayersController : BaseController<BaseballPlayer, EFCoreBaseballPlayerRepository>
     {
-        public MoviesController(EFCoreMovieRepository repository) : base(repository)
+        public BaseballPlayersController(EFCoreBaseballPlayerRepository repository) : base(repository)
         {
 
         }

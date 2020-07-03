@@ -31,10 +31,10 @@ namespace Sandbox
 				configuration.RootPath = "ClientApp/dist";
 			});
 
-		    services.AddDbContext<MoviesContext>(options =>
-		            options.UseSqlServer(Configuration.GetConnectionString("MoviesContext")));
+		    services.AddDbContext<SandboxContext>(options =>
+		            options.UseSqlServer(Configuration.GetConnectionString("SandboxContext")));
 
-			services.AddScoped<EFCoreMovieRepository>();
+			services.AddScoped<EFCoreBaseballPlayerRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

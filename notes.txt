@@ -4,6 +4,9 @@ https://dev.to/dileno/build-a-simple-crud-app-with-angular-8-and-asp-net-core-2-
 https://www.codaffection.com/asp-net-core-article/angular-crud-with-asp-net-core-web-api/
 
 https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7
+
+https://thenextweb.com/syndication/2020/07/02/15-useful-methods-to-get-the-most-out-of-javascript-arrays/
+
 	The relationship is as follows:
 		Controller -> EF Core -> SQL Server
 	Now, we will add a repository between the controller and EF Core as an abstraction layer and will turn the relation into:
