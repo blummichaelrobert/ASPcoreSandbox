@@ -30,27 +30,108 @@
         <div class="col-10">
             <div class="card">
                 <div class="card-body">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Teams
+                    <div class="dropdown float-left">
+                        <button class="btn btn-primary dropdown-toggle" 
+                                type="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" 
+                                aria-expanded="false">
+                          AL East
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
+                          <ul class="list-group">
+                            <li class="list-group-item" (click)="handleDropdownClick('110')">Baltimore Orioles</li>
+                            <li class="list-group-item" (click)="handleDropdownClick('111')">Boston Redsox</li>
+                            <li class="list-group-item" (click)="handleDropdownClick('147')">New York Yankees</li>
+                            <li class="list-group-item" (click)="handleDropdownClick('139')">Tampa Bay Rays</li>
+                            <li class="list-group-item" (click)="handleDropdownClick('141')">Toronto Blue Jays</li>
+                          </ul>
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div class="dropdown float-left">
+                        <button class="btn btn-secondary dropdown-toggle" 
+                                type="button" 
+                                data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false">
+                          AL Central
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Chicago White Sox</a>
+                          <a class="dropdown-item" href="#">Cleveland Indians</a>
+                          <a class="dropdown-item" href="#">Detroit Tigers</a>
+                          <a class="dropdown-item" href="#">Kansas City Royals</a>
+                          <a class="dropdown-item" href="#">Minnesota Twins</a>
+                        </div>
+                    </div>
+                    <div class="dropdown float-left">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          AL West
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Houston Astros</a>
+                          <a class="dropdown-item" href="#">Los Angeles Angels</a>
+                          <a class="dropdown-item" href="#">Oakland Athletics</a>
+                          <a class="dropdown-item" href="#">Seattle Mariners</a>
+                          <a class="dropdown-item" href="#">Texas Rangers</a>
+                        </div>
+                    </div>
+                    <div class="dropdown float-left">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          NL East
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#" (click)="handleDropdownClick($event)">Atlanta Braves</a>
+                          <a class="dropdown-item" href="#">Miami Marlins</a>
+                          <a class="dropdown-item" href="#">New York Mets</a>
+                          <a class="dropdown-item" href="#">Philadelphia Phillies</a>
+                          <a class="dropdown-item" href="#">Washington Nationals</a>
+                        </div>
+                    </div>
+                    <div class="dropdown float-left">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          NL Central
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Chicago Cubs</a>
+                          <a class="dropdown-item" href="#">Cincinnati Reds</a>
+                          <a class="dropdown-item" href="#">Milwaukee Brewers</a>
+                          <a class="dropdown-item" href="#">Pittsburg Pirates</a>
+                          <a class="dropdown-item" href="#">St. Louis Cardinals</a>
+                        </div>
+                    </div>
+                    <div class="dropdown float-left">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          NL West
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Arizona Diamondbacks</a>
+                          <a class="dropdown-item" href="#">Colorado Rockies</a>
+                          <a class="dropdown-item" href="#">Los Angeles Dodgers</a>
+                          <a class="dropdown-item" href="#">San Diego Padres</a>
+                          <a class="dropdown-item" href="#">San Francisco Giants</a>
+                        </div>
+                    </div>
+                    <div class="dropdown float-right">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Positions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
+                          <a class="dropdown-item" href="#">Catcher</a>
+                          <a class="dropdown-item" href="#">First Base</a>
+                          <a class="dropdown-item" href="#">Second Base</a>
+                          <a class="dropdown-item" href="#">Third Base</a>
+                          <a class="dropdown-item" href="#">Short Stop</a>
+                          <a class="dropdown-item" href="#">Left Field</a>
+                          <a class="dropdown-item" href="#">Center Field</a>
+                          <a class="dropdown-item" href="#">Right Field</a>
                         </div>
                     </div>
-                    <google-chart [type]="'Table'" [data]="myData" [columns]="chartColumns"></google-chart>
+                    <google-chart [type]="'Table'" 
+                                  [data]="myData" 
+                                  [columns]="chartColumns"
+                                  (select)="onSelect($event)">
+                    </google-chart>
                 </div>
             </div>
         </div>
