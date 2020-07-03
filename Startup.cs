@@ -35,6 +35,8 @@ namespace Sandbox
 		            options.UseSqlServer(Configuration.GetConnectionString("SandboxContext")));
 
 			services.AddScoped<EFCoreBaseballPlayerRepository>();
+
+			services.AddScoped<EFCoreBaseballTeamRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

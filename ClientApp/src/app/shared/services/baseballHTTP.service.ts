@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -9,42 +9,21 @@ export class BaseballHTTPService {
     private readonly SERVICE_URL = 'https://lookup-service-prod.mlb.com';
     private readonly GET_40_MAN_ROSTER = `/json/named.roster_40.bam?team_id=`;
 
-    teamCodeMap: Map<string, string> = new Map([
-        ['bal', '110'],
-        ['box', '111'],
-        ['nya', '147'],
-        ['tba', '139'],
-        ['tor', '141'],
-        ['cha', '145'],
-        ['cle', '114'],
-        ['det', '116'],
-        ['kca', '118'],
-        ['min', '142'],
-        ['hou', '117'],
-        ['ana', '108'],
-        ['oak', '133'],
-        ['sea', '136'],
-        ['tex', '140'],
-        ['atl', '144'],
-        ['mia', '146'],
-        ['nym', '121'],
-        ['phi', '143'],
-        ['chn', '112'],
-        ['cin', '113'],
-        ['mil', '158'],
-        ['pit', '134'],
-        ['sln', '138'],
-        ['ari', '109'],
-        ['col', '115'],
-        ['lan', '119'],
-        ['sdn', '135'],
-        ['sfn' , '137']
-    ]);
+    
 
-    constructor(private http: HttpClient) { }
+    myApiUrl: string;
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json; charset=utf-8'
+        })
+    };
+
+    constructor(private http: HttpClient) { 
+        this.myApiUrl = 'api/BaseBallTeam/';
+    }
 
     getPlayer() {
-        const uri = `${this.SERVICE_URL}/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='cueto%25'`;
+        const uri = `${this.SERVICE_URL}/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='corbin%25'`;
         console.log(uri);
         return this.http.get(uri);
     }
@@ -54,4 +33,25 @@ export class BaseballHTTPService {
         console.log(uri);
         return this.http.get(uri);
     }
+
+    loadTeamData(teamId: string, teamcode: string) {
+        const body = {teamid: teamId, teamcode: teamcode};
+        return this.http.post(`api/baseballteam`, JSON.stringify(body), this.httpOptions) .pipe(
+            retry(1),
+            catchError(this.errorHandler)
+        );
+    }
+
+    errorHandler(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+          // Get client-side error
+          errorMessage = error.error.message;
+        } else {
+          // Get server-side error
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        console.log(errorMessage);
+        return throwError(errorMessage);
+      }
 }

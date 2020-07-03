@@ -16,12 +16,55 @@ export class BaseballComponent {
 
     chartColumns = ['Player Info', 'Positon', 'Ht/Wt', 'BA', 'HR', 'RBI', 'OPS', 'H', '2B', '3B'];
 
+    teamCodeMap: Map<string, string> = new Map([
+        ['bal', '110'],
+        ['box', '111'],
+        ['nya', '147'],
+        ['tba', '139'],
+        ['tor', '141'],
+        ['cha', '145'],
+        ['cle', '114'],
+        ['det', '116'],
+        ['kca', '118'],
+        ['min', '142'],
+        ['hou', '117'],
+        ['ana', '108'],
+        ['oak', '133'],
+        ['sea', '136'],
+        ['tex', '140'],
+        ['atl', '144'],
+        ['mia', '146'],
+        ['nym', '121'],
+        ['phi', '143'],
+        ['chn', '112'],
+        ['cin', '113'],
+        ['mil', '158'],
+        ['pit', '134'],
+        ['sln', '138'],
+        ['ari', '109'],
+        ['col', '115'],
+        ['lan', '119'],
+        ['sdn', '135'],
+        ['sfn', '137']
+    ]);
+
     constructor(private baseballHTTPService: BaseballHTTPService) { }
 
 
     ngOnInit() {
         this.baseballHTTPService.getPlayer()
         .subscribe((data: any) => { console.log(data); });
+
+        // this.baseballHTTPService.loadTeamData().subscribe(result => {
+        //    console.log(result);
+        // });
+
+        // this.teamCodeMap.forEach((value, key) => {
+        //     // console.log(`value: ${value}, key: ${key}, map: ${map}`);
+        //     this.baseballHTTPService.loadTeamData(value, key).subscribe(result => {
+        //         console.log(result);
+        //      });
+        // });
     }
 
     handleDropdownClick(teamCode: string) {
