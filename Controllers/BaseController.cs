@@ -29,12 +29,12 @@ namespace Sandbox.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<TEntity>> Get(int id)
 		{
-			var movie = await repository.Get(id);
-			if (movie == null)
+			var entity = await repository.Get(id);
+			if (entity == null)
 			{
 				return NotFound();
 			}
-			return movie;
+			return entity;
 		}
 
 		// PUT: api/[controller]/5
@@ -61,12 +61,12 @@ namespace Sandbox.Controllers
 		[HttpDelete("{id}")]
 		public async Task<ActionResult<TEntity>> Delete(int id)
 		{
-			var movie = await repository.Delete(id);
-			if (movie == null)
+			var entity = await repository.Delete(id);
+			if (entity == null)
 			{
 				return NotFound();
 			}
-			return movie;
+			return entity;
 		}
 
 	}
