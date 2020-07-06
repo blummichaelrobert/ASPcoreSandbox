@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { BaseballPlayer } from 'src/app/baseball/models/baseball.models';
 
 @Injectable()
 export class BaseballHTTPService {
@@ -39,10 +40,24 @@ export class BaseballHTTPService {
         return this.http.get(uri);
     }
 
+    getMorePitcherData(id: string) {
+        const uri = `https://lookup-service-prod.mlb.com/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season='2019'&player_id='${id}'`;
+        return this.http.get(uri);
+    }
+
     loadPlayerData(player: BaseballPlayer) {
         const body = player;
         console.log(JSON.stringify(player));
         return this.http.post(`https://localhost:44336/api/baseballplayers`, JSON.stringify(body), this.httpOptions) .pipe(
+            retry(1),
+            catchError((this.errorHandler))
+        );
+    }
+
+    loadPitcherData(player: BaseballPlayer) {
+        const body = player;
+        console.log(JSON.stringify(player));
+        return this.http.post(`https://localhost:44336/api/pitchers`, JSON.stringify(body), this.httpOptions) .pipe(
             retry(1),
             catchError((this.errorHandler))
         );
@@ -62,19 +77,3 @@ export class BaseballHTTPService {
       }
 }
 
-export class BaseballPlayer {
-    playerId: string;
-    teamId: string;
-    firstName?: string;
-    lastName?: string;
-    position?: string;
-    heightWeight?: string;
-    atBats?: string;
-    battingAverage?: string;
-    homeRuns?: string;
-    runsBattedIn?: string;
-    onBasePercentage?: string;
-    hits?: string;
-    doubles?: string;
-    triples?: string;
-}

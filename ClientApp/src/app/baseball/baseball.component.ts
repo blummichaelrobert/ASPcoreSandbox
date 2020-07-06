@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
+import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/baseball.models';
 
 @Component({
     selector: 'baseball',
@@ -48,9 +49,12 @@ export class BaseballComponent {
         ['sfn', '137']
     ]);
 
+    hittingStats: HittingStats = new HittingStats();
+    pitchingStats: PitchingStats = new PitchingStats();
+
     constructor(private baseballHTTPService: BaseballHTTPService) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     handleDropdownClick(teamCode: string) {
 
@@ -58,70 +62,16 @@ export class BaseballComponent {
 
             const returnedData = data['roster_40']['queryResults']['row'];
             const newData = [];
-            let atBats: string;
-            let battingAverage: string;
-            let homeRuns: string;
-            let runsBattedIn: string;
-            let onBasePercentage: string;
-            let hits: string;
-            let doubles: string;
-            let triples: string;
 
             returnedData.forEach(player => {
-
+                // console.log(player);
                 const playerid = player['player_id'];
 
-                this.baseballHTTPService.getMorePlayerData(playerid).subscribe(result => {
-
-                    if (result['sport_hitting_tm']['queryResults']['totalSize'] === '0') {
-                        return;
-                    } else {
-                        // console.log(result);
-                        let hittingStats: any[] = result['sport_hitting_tm']['queryResults']['row'];
-
-
-                        if (hittingStats.length > 1) {
-                            hittingStats = hittingStats[1];
-                        }
-
-                        if (hittingStats['ab'] === undefined) {
-                            atBats = '0';
-                        } else {
-                            atBats = hittingStats['ab'];
-                        }
-
-                        battingAverage = hittingStats['avg'];
-                        homeRuns = hittingStats['hr'];
-                        runsBattedIn = hittingStats['rbi'];
-                        onBasePercentage = hittingStats['obp'];
-                        hits = hittingStats['h'];
-                        doubles = hittingStats['d'];
-                        triples = hittingStats['t'];
-
-                        const newPlayer: BaseballPlayer = {
-                            playerId: player['player_id'],
-                            teamId: player['team_id'],
-                            firstName: player['name_first'],
-                            lastName: player['name_last'],
-                            position: player['position_txt'],
-                            heightWeight: `${player['height_feet']}ft ${player['height_inches']}in - ${player['weight']} lbs.`,
-                            atBats: atBats,
-                            battingAverage: battingAverage,
-                            homeRuns: homeRuns,
-                            runsBattedIn: runsBattedIn,
-                            onBasePercentage: onBasePercentage,
-                            hits: hits,
-                            doubles: doubles,
-                            triples: triples
-                        };
-
-                        // console.log(newPlayer);
-                        this.baseballHTTPService.loadPlayerData(newPlayer).subscribe(() => {
-                            console.log(`player data loaded`);
-                        });
-                    }
-                });
-
+                if (player['position_txt'] === 'P') {
+                    this.loadNewPitcher(playerid, player);
+                } else {
+                    this.loadNewFieldPlayer(playerid, player);
+                }
 
                 const playa = [player['name_display_first_last'], player['position'], player['weight'], 0.300, 45, 100, 1.000, 130, 30, 3];
                 newData.push(playa);
@@ -131,24 +81,89 @@ export class BaseballComponent {
         });
     }
 
+    loadNewFieldPlayer(playerid: string, player: BaseballPlayer) {
+        this.baseballHTTPService.getMorePlayerData(playerid).subscribe(result => {
+
+            if (result['sport_hitting_tm']['queryResults']['totalSize'] === '0') {
+                return;
+            } else {
+                let hittingStats: any[] = result['sport_hitting_tm']['queryResults']['row'];
+
+
+                if (hittingStats.length > 1) {
+                    hittingStats = hittingStats[1];
+                }
+
+                if (hittingStats['ab'] === undefined) {
+                    this.hittingStats.atBats = '0';
+                } else {
+                    this.hittingStats.atBats = hittingStats['ab'];
+                }
+
+                this.hittingStats.battingAverage = hittingStats['avg'];
+                this.hittingStats.homeRuns = hittingStats['hr'];
+                this.hittingStats.runsBattedIn = hittingStats['rbi'];
+                this.hittingStats.onBasePercentage = hittingStats['obp'];
+                this.hittingStats.hits = hittingStats['h'];
+                this.hittingStats.doubles = hittingStats['d'];
+                this.hittingStats.triples = hittingStats['t'];
+
+                const newPlayer: BaseballPlayer = {
+                    playerId: player['player_id'],
+                    teamId: player['team_id'],
+                    firstName: player['name_first'],
+                    lastName: player['name_last'],
+                    position: player['position_txt'],
+                    heightWeight: `${player['height_feet']}ft ${player['height_inches']}in - ${player['weight']} lbs.`,
+                    atBats: this.hittingStats.atBats,
+                    battingAverage: this.hittingStats.battingAverage,
+                    homeRuns: this.hittingStats.homeRuns,
+                    runsBattedIn: this.hittingStats.runsBattedIn,
+                    onBasePercentage: this.hittingStats.onBasePercentage,
+                    hits: this.hittingStats.hits,
+                    doubles: this.hittingStats.doubles,
+                    triples: this.hittingStats.triples
+                };
+                // this.baseballHTTPService.loadPlayerData(newPlayer).subscribe(() => {
+                //     console.log(`player data loaded`);
+                // });
+            }
+        });
+    }
+
+    loadNewPitcher(playerid: string, player: Pitcher) {
+        this.baseballHTTPService.getMorePitcherData(playerid).subscribe(result => {
+            if (result['sport_pitching_tm']['queryResults']['totalSize'] === '0') {
+                return;
+            } else {
+                let pitchingStats: any[] = result['sport_pitching_tm']['queryResults']['row'];
+
+
+                if (pitchingStats.length > 1) {
+                    pitchingStats = pitchingStats[1];
+                }
+
+                const newPlayer: Pitcher = {
+                    playerId: player['player_id'],
+                    teamId: player['team_id'],
+                    firstName: player['name_first'],
+                    lastName: player['name_last'],
+                    heightWeight: `${player['height_feet']}ft ${player['height_inches']}in - ${player['weight']} lbs.`,
+                    earnedRunAverage: pitchingStats['era'],
+                    strikeOuts: pitchingStats['so'],
+                    inningsPitched: pitchingStats['ip'],
+                    hitAllowedAvgPer9Innings: pitchingStats['h9'],
+                    walks: pitchingStats['bb'],
+                    whip: pitchingStats['whip']
+                };
+                // this.baseballHTTPService.loadPitcherData(newPlayer).subscribe(() => {
+                //     console.log(`player data loaded`);
+                // });
+            }
+        });
+    }
+
     onSelect(event: any) {
         console.log(event);
     }
-}
-
-export class BaseballPlayer {
-    playerId: string;
-    teamId: string;
-    firstName?: string;
-    lastName?: string;
-    position?: string;
-    heightWeight?: string;
-    atBats?: string;
-    battingAverage?: string;
-    homeRuns?: string;
-    runsBattedIn?: string;
-    onBasePercentage?: string;
-    hits?: string;
-    doubles?: string;
-    triples?: string;
 }

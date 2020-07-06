@@ -26,7 +26,7 @@ namespace Sandbox.Models
 
 		public string InningsPitched { get; set; }
 
-		public string Hits { get; set; }
+		public string HitAllowedAvgPer9Innings { get; set; }
 
 		public string Walks { get; set; }
 
