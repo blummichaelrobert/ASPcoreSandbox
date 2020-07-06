@@ -13,5 +13,7 @@ namespace Sandbox.Data
         public DbSet<BaseballPlayer> BaseballPlayers { get; set; }
 
         public DbSet<BaseballTeam> BaseballTeams { get; set; }
+
+        public DbSet<Pitcher> Pitchers { get; set; }
     }
 }
