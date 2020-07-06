@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sandbox.Data;
 
 namespace Sandbox.Migrations
 {
     [DbContext(typeof(SandboxContext))]
-    partial class SandboxContextModelSnapshot : ModelSnapshot
+    [Migration("20200703190516_AddAtBatsField")]
+    partial class AddAtBatsField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,14 +27,14 @@ namespace Sandbox.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AtBats")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AtBats")
+                        .HasColumnType("int");
 
-                    b.Property<string>("BattingAverage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("BattingAverage")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Doubles")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Doubles")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -40,17 +42,17 @@ namespace Sandbox.Migrations
                     b.Property<string>("HeightWeight")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Hits")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Hits")
+                        .HasColumnType("int");
 
-                    b.Property<string>("HomeRuns")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("HomeRuns")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OnBasePercentage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("OnBasePercentage")
+                        .HasColumnType("float");
 
                     b.Property<string>("PlayerId")
                         .IsRequired()
@@ -59,15 +61,11 @@ namespace Sandbox.Migrations
                     b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RunsBattedIn")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RunsBattedIn")
+                        .HasColumnType("int");
 
-                    b.Property<string>("TeamId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Triples")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Triples")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

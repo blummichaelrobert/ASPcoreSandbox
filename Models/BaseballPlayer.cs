@@ -6,35 +6,35 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Sandbox.Models
 {
 	public class BaseballPlayer : IEntity
-    {
+	{
 		[Key]
 		public int Id { get; set; }
-
 		[Required]
+		public string PlayerId { get; set; }
+		[Required]
+		public string TeamId { get; set; }
 		public string FirstName { get; set; }
 
-		[Required]
 		public string LastName { get; set; }
 
-		[Required]
 		public string Position { get; set; }
 
-		[Required]
 		public string HeightWeight { get; set; }
 
-		[Required]
-		public double BattingAverage { get; set; }
+		public string AtBats { get; set; }
 
-		public int HomeRuns { get; set; }
+		public string BattingAverage { get; set; }
 
-		public int RunsBattedIn { get; set; }
+		public string HomeRuns { get; set; }
 
-		public double OnBasePercentage { get; set; }
+		public string RunsBattedIn { get; set; }
 
-		public int Hits { get; set; }
+		public string OnBasePercentage { get; set; }
 
-		public int Doubles { get; set; }
+		public string Hits { get; set; }
 
-		public int Triples { get; set; }
+		public string Doubles { get; set; }
+
+		public string Triples { get; set; }
 	}
 }

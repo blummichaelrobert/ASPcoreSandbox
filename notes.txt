@@ -7,6 +7,11 @@ https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21
 
 https://thenextweb.com/syndication/2020/07/02/15-useful-methods-to-get-the-most-out-of-javascript-arrays/
 
+https://blog.bitsrc.io/keep-your-promises-in-typescript-using-async-await-7bdc57041308
+
+	Promises are good for event timing
+	Observables are good for hydrating listeners with data and using pipes.
+
 	The relationship is as follows:
 		Controller -> EF Core -> SQL Server
 	Now, we will add a repository between the controller and EF Core as an abstraction layer and will turn the relation into:

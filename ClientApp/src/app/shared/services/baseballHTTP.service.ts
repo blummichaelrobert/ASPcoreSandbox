@@ -24,21 +24,27 @@ export class BaseballHTTPService {
 
     getPlayer() {
         const uri = `${this.SERVICE_URL}/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part='corbin%25'`;
-        console.log(uri);
+        //console.log(uri);
         return this.http.get(uri);
     }
 
     get40ManRoster(teamCode: string) {
         const uri = `${this.SERVICE_URL}${this.GET_40_MAN_ROSTER}${teamCode}`;
-        console.log(uri);
+        //console.log(uri);
         return this.http.get(uri);
     }
 
-    loadTeamData(teamId: string, teamcode: string) {
-        const body = {teamid: teamId, teamcode: teamcode};
-        return this.http.post(`api/baseballteam`, JSON.stringify(body), this.httpOptions) .pipe(
+    getMorePlayerData(id: string) {
+        const uri = `${this.SERVICE_URL}/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2019'&player_id='${id}'`;
+        return this.http.get(uri);
+    }
+
+    loadPlayerData(player: BaseballPlayer) {
+        const body = player;
+        console.log(JSON.stringify(player));
+        return this.http.post(`https://localhost:44336/api/baseballplayers`, JSON.stringify(body), this.httpOptions) .pipe(
             retry(1),
-            catchError(this.errorHandler)
+            catchError((this.errorHandler))
         );
     }
 
@@ -54,4 +60,21 @@ export class BaseballHTTPService {
         console.log(errorMessage);
         return throwError(errorMessage);
       }
+}
+
+export class BaseballPlayer {
+    playerId: string;
+    teamId: string;
+    firstName?: string;
+    lastName?: string;
+    position?: string;
+    heightWeight?: string;
+    atBats?: string;
+    battingAverage?: string;
+    homeRuns?: string;
+    runsBattedIn?: string;
+    onBasePercentage?: string;
+    hits?: string;
+    doubles?: string;
+    triples?: string;
 }

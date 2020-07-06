@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sandbox.Data;
 
 namespace Sandbox.Migrations
 {
     [DbContext(typeof(SandboxContext))]
-    partial class SandboxContextModelSnapshot : ModelSnapshot
+    [Migration("20200703193949_MakeDataStrings")]
+    partial class MakeDataStrings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,10 +62,6 @@ namespace Sandbox.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RunsBattedIn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TeamId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Triples")
