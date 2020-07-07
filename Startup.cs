@@ -39,7 +39,7 @@ namespace Sandbox
 
 			services.AddScoped<EFCoreBaseballTeamRepository>();
 
-			services.AddScoped<EFCorePitcherRepository<Pitcher, SandboxContext>>();
+			services.AddScoped<EFCorePitcherRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,9 +10,9 @@ namespace Sandbox.Controllers
 	[ApiController]
 	public class PitchersController : ControllerBase
 	{
-		private readonly EFCorePitcherRepository<Pitcher, SandboxContext> repository;
+		private readonly EFCorePitcherRepository repository;
 
-		public PitchersController(EFCorePitcherRepository<Pitcher, SandboxContext> repository)
+		public PitchersController(EFCorePitcherRepository repository)
 		{
 			this.repository = repository;
 		}
