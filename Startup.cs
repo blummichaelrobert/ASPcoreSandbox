@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Sandbox.Data;
 using Sandbox.EFCore;
+using Sandbox.Models;
 
 namespace Sandbox
 {
@@ -38,7 +39,7 @@ namespace Sandbox
 
 			services.AddScoped<EFCoreBaseballTeamRepository>();
 
-			services.AddScoped<EFCorePitcherRepository>();
+			services.AddScoped<EFCorePitcherRepository<Pitcher, SandboxContext>>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
