@@ -2,6 +2,7 @@
 using Sandbox.Data;
 using Sandbox.EFCore;
 using Sandbox.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sandbox.Controllers
@@ -27,6 +28,20 @@ namespace Sandbox.Controllers
 				return NotFound();
 			}
 			return pitcher;
+		}
+
+		[HttpGet("GetPitchersByTeam/{id}")]
+		public async Task<ActionResult<IEnumerable<Pitcher>>> GetPitchers(string id)
+		{
+
+			var pitchers = await repository.GetPitchersAsync(id);
+			
+			if (pitchers == null)
+			{
+				return NotFound();
+			}
+			return pitchers;
+
 		}
 	}
 }

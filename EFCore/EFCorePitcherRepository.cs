@@ -4,6 +4,7 @@ using Sandbox.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace Sandbox.EFCore
@@ -34,6 +35,13 @@ namespace Sandbox.EFCore
 					   //.FirstOrDefault<Student>();
 
 			return await context.Set<Pitcher>().FindAsync(id);
+		}
+
+		public async Task<List<Pitcher>> GetPitchersAsync(string teamId)
+		{
+			var query = context.Pitchers.Where(pitcher => pitcher.TeamId == teamId);
+
+			return await query.ToListAsync();
 		}
 
 		public Task<List<Pitcher>> GetAll()

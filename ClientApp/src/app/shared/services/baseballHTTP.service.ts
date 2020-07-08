@@ -35,8 +35,8 @@ export class BaseballHTTPService {
         return this.http.get(uri);
     }
 
-    getRosterFromContext() {
-        return this.http.get(`https://localhost:44336/api/baseballplayers`, this.httpOptions).pipe( retry(1),
+    getRosterFromContext(teamId: string) {
+        return this.http.get(`https://localhost:44336/api/baseballplayers/playersbyteam/${teamId}`, this.httpOptions).pipe( retry(1),
         catchError((this.errorHandler)));
     }
 

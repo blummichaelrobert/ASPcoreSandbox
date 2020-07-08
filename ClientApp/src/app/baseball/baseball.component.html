@@ -142,6 +142,10 @@
                             <a class="dropdown-item" href="#">Right Field</a>
                         </div>
                     </div>
-                    <google-chart [type]="'Table'" [data]="myData" [columns]="chartColumns" (select)="onSelect($event)">
+                    <google-chart [type]="'Table'" 
+                                  [data]="myData" 
+                                  [columns]="chartColumns" 
+                                  (select)="onSelect($event)"
+                                  #playersGrid>
                     </google-chart>
                 </div>

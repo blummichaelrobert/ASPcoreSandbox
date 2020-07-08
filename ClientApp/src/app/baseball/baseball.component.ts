@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
 import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/baseball.models';
+import { GoogleChartComponent } from 'angular-google-charts';
 
 @Component({
     selector: 'baseball',
@@ -11,43 +12,15 @@ import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/b
 
 export class BaseballComponent {
 
+    @ViewChild('playersGrid', { static: false }) playerGrid: GoogleChartComponent;
+
     myData = [
         ['Mike Trout', 'CF', '6-2, 235 lbs', 0.291, 45, 104, 1.083, 137, 27, 2]
     ];
 
     chartColumns = ['Player Info', 'Positon', 'Ht/Wt', 'BA', 'HR', 'RBI', 'OPS', 'H', '2B', '3B'];
 
-    teamCodeMap: Map<string, string> = new Map([
-        ['bal', '110'],
-        ['box', '111'],
-        ['nya', '147'],
-        ['tba', '139'],
-        ['tor', '141'],
-        ['cha', '145'],
-        ['cle', '114'],
-        ['det', '116'],
-        ['kca', '118'],
-        ['min', '142'],
-        ['hou', '117'],
-        ['ana', '108'],
-        ['oak', '133'],
-        ['sea', '136'],
-        ['tex', '140'],
-        ['atl', '144'],
-        ['mia', '146'],
-        ['nym', '121'],
-        ['phi', '143'],
-        ['chn', '112'],
-        ['cin', '113'],
-        ['mil', '158'],
-        ['pit', '134'],
-        ['sln', '138'],
-        ['ari', '109'],
-        ['col', '115'],
-        ['lan', '119'],
-        ['sdn', '135'],
-        ['sfn', '137']
-    ]);
+    
 
     hittingStats: HittingStats = new HittingStats();
     pitchingStats: PitchingStats = new PitchingStats();
@@ -57,28 +30,32 @@ export class BaseballComponent {
     ngOnInit() { }
 
     handleDropdownClick(teamCode: string) {
-
-        this.baseballHTTPService.get40ManRoster(teamCode).subscribe((data: any[]) => {
-
-            const returnedData = data['roster_40']['queryResults']['row'];
-            const newData = [];
-
-            returnedData.forEach(player => {
-                // console.log(player);
-                const playerid = player['player_id'];
-
-                if (player['position_txt'] === 'P') {
-                    this.loadNewPitcher(playerid, player);
-                } else {
-                    this.loadNewFieldPlayer(playerid, player);
-                }
-
-                const playa = [player['name_display_first_last'], player['position'], player['weight'], 0.300, 45, 100, 1.000, 130, 30, 3];
-                newData.push(playa);
-            });
-
-            this.myData = newData;
+        this.baseballHTTPService.getRosterFromContext(teamCode).subscribe((returnedData) => {
+            console.log(returnedData);
         });
+        // this.baseballHTTPService.get40ManRoster(teamCode).subscribe((data: any[]) => {
+
+        //     const returnedData = data['roster_40']['queryResults']['row'];
+        //     const newData = [];
+
+        //     returnedData.forEach(player => {
+        //         // console.log(player);
+        //         const playerid = player['player_id'];
+
+        //         // if (player['position_txt'] === 'P') {
+        //         //     this.loadNewPitcher(playerid, player);
+        //         // } else {
+        //         //     this.loadNewFieldPlayer(playerid, player);
+        //         // }
+
+        //         const playa = [player['name_display_first_last'], player['position'], player['weight'], 0.300, 45, 100, 1.000, 130, 30, 3];
+        //         newData.push(playa);
+        //     });
+
+        //     this.myData = newData;
+
+        //     console.log(this.playerGrid);
+        // });
     }
 
     loadNewFieldPlayer(playerid: string, player: BaseballPlayer) {
