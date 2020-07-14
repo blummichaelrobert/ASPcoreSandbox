@@ -3,7 +3,7 @@
         <div class="col-2">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Selected Players</h5>
                     <div class="row">
                         <div class="col-2">C:</div>
                         <div class="col-10"></div>
@@ -132,19 +132,29 @@
                             Positions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Catcher</a>
-                            <a class="dropdown-item" href="#">First Base</a>
-                            <a class="dropdown-item" href="#">Second Base</a>
-                            <a class="dropdown-item" href="#">Third Base</a>
-                            <a class="dropdown-item" href="#">Short Stop</a>
-                            <a class="dropdown-item" href="#">Left Field</a>
-                            <a class="dropdown-item" href="#">Center Field</a>
-                            <a class="dropdown-item" href="#">Right Field</a>
+                            <ul>
+                                <li (click)="getPositionData('C')">Catcher</li>
+                                <li (click)="getPositionData('1B')">First Base</li>
+                                <li (click)="getPositionData('2B')">Second Base</li>
+                                <li (click)="getPositionData('3B')">Third Base</li>
+                                <li (click)="getPositionData('SS')">Short Stop</li>
+                                <li (click)="getPositionData('LF')">Left Field</li>
+                                <li (click)="getPositionData('CF')">Center Field</li>
+                                <li (click)="getPositionData('RF')">Right Field</li>
+                            </ul>
                         </div>
                     </div>
-                    <google-chart [type]="'Table'" 
+                    <google-chart *ngIf="true"
+                                  [type]="'Table'" 
                                   [data]="myData" 
-                                  [columns]="chartColumns" 
+                                  [columns]="playerChartColumns" 
+                                  (select)="onSelect($event)"
+                                  #playersGrid>
+                    </google-chart>
+                    <google-chart *ngIf="false"
+                                  [type]="'Table'" 
+                                  [data]="myData" 
+                                  [columns]="pitcherChartColumns" 
                                   (select)="onSelect($event)"
                                   #playersGrid>
                     </google-chart>

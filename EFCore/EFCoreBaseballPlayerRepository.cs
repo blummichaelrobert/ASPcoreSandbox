@@ -1,14 +1,27 @@
-﻿using Sandbox.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sandbox.Data;
 using Sandbox.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sandbox.EFCore
 {
-	public class EFCoreBaseballPlayerRepository: EFCoreRepository<BaseballPlayer, SandboxContext>
+	public class EFCoreBaseballPlayerRepository : DbContext
 	{
-		public EFCoreBaseballPlayerRepository(SandboxContext context) : base(context)
-		{
+		private readonly SandboxContext context;
 
+		public EFCoreBaseballPlayerRepository(SandboxContext context)
+		{
+			this.context = context;
 		}
-		// We can add new methods specific to the movie repository here in the future
+
+		public async Task<List<BaseballPlayer>> GetPlayerByPositon(string position)
+		{
+			var query = context.BaseballPlayers.Where(player => player.Position == position);
+
+			return await query.ToListAsync();
+		}
+
 	}
 }

@@ -40,6 +40,12 @@ export class BaseballHTTPService {
         catchError((this.errorHandler)));
     }
 
+    getPlayersByPostion(position: string) {
+        console.log(position);
+        return this.http.get(`https://localhost:44336/api/baseballplayers/GetPlayersByPosition/${position}`, this.httpOptions).pipe( retry(1),
+        catchError((this.errorHandler)));
+    }
+
     getMorePlayerData(id: string) {
         const uri = `${this.SERVICE_URL}/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2019'&player_id='${id}'`;
         return this.http.get(uri);

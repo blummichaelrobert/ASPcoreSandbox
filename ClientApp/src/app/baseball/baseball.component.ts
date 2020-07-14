@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ɵPlayState } from '@angular/core';
 import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
 import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/baseball.models';
 import { GoogleChartComponent } from 'angular-google-charts';
+import { BaseballData } from './baseball.data';
 
 @Component({
     selector: 'baseball',
@@ -15,12 +16,13 @@ export class BaseballComponent {
     @ViewChild('playersGrid', { static: false }) playerGrid: GoogleChartComponent;
 
     myData = [
-        ['Mock Player', '6-2, 235 lbs', '4.0', '100', '30', '5', '1.2', '65', '0.65']
+        ['Mock Player', '6-2, 235 lbs', '4.0', '100', '30', '5', '1.2', '65', '0.65', '11', '2']
     ];
 
-    chartColumns = ['Pitcher Name', 'Ht/Wt', 'era', 'so', 'bb', 'ha9', 'whip', 'ip', 'so/ip'];
+    playerChartColumns = ['Player Name', 'Ht/Wt', 'Team', 'AB', 'BA', 'HR', 'RBI', 'OBP', 'H', 'D', 'T'];
+    pitcherChartColumns = ['Pitcher Name', 'Ht/Wt', 'era', 'so', 'bb', 'ha9', 'whip', 'ip', 'so/ip'];
 
-
+    baseBallData: BaseballData = new BaseballData();
 
     hittingStats: HittingStats = new HittingStats();
     pitchingStats: PitchingStats = new PitchingStats();
@@ -29,9 +31,35 @@ export class BaseballComponent {
 
     ngOnInit() { }
 
+    getPositionData(position: string) {
+        this.baseballHTTPService.getPlayersByPostion(position).subscribe((data: BaseballPlayer[]) => {
+            const newData: any[] = [];
+
+            data.forEach(player => {
+                const firstLastName = `${player.firstName} ${player.lastName}`;
+                const team = this.baseBallData.teamIdToNameMap.get(player.teamId);
+                const fieldPlayer = [
+                    firstLastName,
+                    player.heightWeight,
+                    team,
+                    player.atBats,
+                    player.battingAverage,
+                    player.homeRuns,
+                    player.runsBattedIn,
+                    player.onBasePercentage,
+                    player.hits,
+                    player.doubles,
+                    player.triples
+                ];
+                newData.push(fieldPlayer);
+            });
+
+            this.myData = newData;
+        });
+    }
+
     handleDropdownClick(teamCode: string) {
         this.baseballHTTPService.getRosterFromContext(teamCode).subscribe((data: Pitcher[]) => {
-            console.log(data);
             const newData: any[] = [];
             data.forEach(player => {
 

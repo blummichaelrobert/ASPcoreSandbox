@@ -1,15 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sandbox.EFCore;
 using Sandbox.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sandbox.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseballPlayersController : BaseController<BaseballPlayer, EFCoreBaseballPlayerRepository>
+    public class BaseballPlayersController : ControllerBase
     {
-        public BaseballPlayersController(EFCoreBaseballPlayerRepository repository) : base(repository)
+        private readonly EFCoreBaseballPlayerRepository repository;
+
+        public BaseballPlayersController(EFCoreBaseballPlayerRepository repository)
         {
+            this.repository = repository;
+        }
+
+        [HttpGet("GetPlayersByPosition/{position}")]
+        public async Task<ActionResult<IEnumerable<BaseballPlayer>>> GetPlayers(string position)
+        {
+
+            var players = await repository.GetPlayerByPositon(position);
+
+            if (players == null)
+            {
+                return NotFound();
+            }
+            return players;
 
         }
     }

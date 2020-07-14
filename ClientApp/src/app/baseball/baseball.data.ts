@@ -33,6 +33,39 @@ export class BaseballData {
         ['sfn', '137']
     ]);
 
+    readonly teamIdToNameMap: Map<string, string> = new Map([
+        ['110', 'Baltimore Orioles'],
+        ['111', 'Boston Red Sox'],
+        ['147', 'New York Yankees'],
+        ['139', 'Tampa Bay Blue Rays'],
+        ['141', 'Toronto Blue Jays'],
+        ['145', 'Chicago White Sox'],
+        ['114', 'Cleveland Indians'],
+        ['116', 'Detroit Tigers'],
+        ['118', 'Kansas City Royals'],
+        ['142', 'Minnesota Twins'],
+        ['117', 'Houston Astros'],
+        ['108', 'Los Angeles Angeles'],
+        ['133', 'Oakland Athletics'],
+        ['136', 'Seattle Mariners'],
+        ['140', 'Texas Rangers'],
+        ['144', 'Atlanta Braves'],
+        ['146', 'Miami Marlins'],
+        ['121', 'New York Mets'],
+        ['143', 'Philadelphia Pillies'],
+        ['120', 'Washington Nationals'],
+        ['112', 'Chicago Cubs'],
+        ['113', 'Cincinnati Reds'],
+        ['158', 'Milwaukee Brewers'],
+        ['134', 'Pittsburgh Pirates'],
+        ['138', 'St. Louis Cardinals'],
+        ['109', 'Arizona Diamondbacks'],
+        ['115', 'Colorado Rockies'],
+        ['119', 'Los Angeles Dodgers'],
+        ['135', 'San Diego Padres'],
+        ['137', 'San Francisco Giants']
+    ]);
+
     readonly teamCodeToNameMap: Map<string, string> = new Map ([
         ['bal', 'Baltimore Orioles'],
         ['box', 'Boston Red Sox'],
@@ -64,5 +97,5 @@ export class BaseballData {
         ['lan', 'Los Angeles Dodgers'],
         ['sdn', 'San Diego Padres'],
         ['sfn', 'San Francisco Giants']
-    ]);
+    ])
 }
