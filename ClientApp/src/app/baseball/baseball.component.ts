@@ -15,12 +15,12 @@ export class BaseballComponent {
     @ViewChild('playersGrid', { static: false }) playerGrid: GoogleChartComponent;
 
     myData = [
-        ['Mike Trout', 'CF', '6-2, 235 lbs', 0.291, 45, 104, 1.083, 137, 27, 2]
+        ['Mock Player', '6-2, 235 lbs', '4.0', '100', '30', '5', '1.2', '65', '0.65']
     ];
 
-    chartColumns = ['Player Info', 'Positon', 'Ht/Wt', 'BA', 'HR', 'RBI', 'OPS', 'H', '2B', '3B'];
+    chartColumns = ['Pitcher Name', 'Ht/Wt', 'era', 'so', 'bb', 'ha9', 'whip', 'ip', 'so/ip'];
 
-    
+
 
     hittingStats: HittingStats = new HittingStats();
     pitchingStats: PitchingStats = new PitchingStats();
@@ -30,8 +30,30 @@ export class BaseballComponent {
     ngOnInit() { }
 
     handleDropdownClick(teamCode: string) {
-        this.baseballHTTPService.getRosterFromContext(teamCode).subscribe((returnedData) => {
-            console.log(returnedData);
+        this.baseballHTTPService.getRosterFromContext(teamCode).subscribe((data: Pitcher[]) => {
+            console.log(data);
+            const newData: any[] = [];
+            data.forEach(player => {
+
+                const firstLastName = `${player.firstName} ${player.lastName}`;
+                const so: number = +player.strikeOuts;
+                const ip: number = +player.inningsPitched;
+                const soPerip = (so / ip).toPrecision(3);
+                const pitcher = [
+                    firstLastName,
+                    player.heightWeight,
+                    player.earnedRunAverage,
+                    player.strikeOuts,
+                    player.walks,
+                    player.hitAllowedAvgPer9Innings,
+                    player.whip,
+                    player.inningsPitched,
+                    soPerip.toString()
+                ];
+                newData.push(pitcher);
+            });
+
+            this.myData = newData;
         });
         // this.baseballHTTPService.get40ManRoster(teamCode).subscribe((data: any[]) => {
 

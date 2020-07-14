@@ -32,3 +32,9 @@ https://blog.bitsrc.io/keep-your-promises-in-typescript-using-async-await-7bdc57
 		did i port all the latest code?
 
 	Fix Music CSS	
+
+	Page, Sort, Filter Grid
+
+	Show Stats with google visual over last 3 seasons
+		To do this => change db structure.
+			player data to show on 1 table, fk to player hitting data table.
