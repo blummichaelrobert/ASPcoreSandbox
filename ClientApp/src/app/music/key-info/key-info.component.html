@@ -1,0 +1,23 @@
+<div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Key Mood
+          </button>
+        </h5>
+      </div>
+  
+      <div id="collapseOne" class="collapse"  aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body overflow-auto">
+          <ul>
+            <li *ngFor="let mood of keyMoodText">
+              {{ mood }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Just added template html. todo: hook up mood data to ul with ng-template that parses on . as delimeter -->

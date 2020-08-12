@@ -7,6 +7,7 @@ import { MusicComponent } from './music.component';
 import { ChordProgressionComponent } from './chord-progression/chord-progression.component';
 import { FretboardComponent } from './fretboard/fretboard.component';
 import { CommonService } from '../shared/services/common.service';
+import { KeyInfoComponent } from './key-info/key-info.component';
 
 const routes: Routes = [{ path: '', component: MusicComponent }];
 
@@ -19,6 +20,7 @@ const routes: Routes = [{ path: '', component: MusicComponent }];
     declarations: [
         ChordProgressionComponent,
         FretboardComponent,
+        KeyInfoComponent,
         MusicComponent
     ],
     providers: [CommonService]

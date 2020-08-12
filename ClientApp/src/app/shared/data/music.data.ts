@@ -2,6 +2,8 @@
 
 export class MusicData {
 
+    // todo: create getters for all these.
+
     readonly chromaticMap: Map<string, string[]> = new Map([
         ['0', ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']],
         ['1', ['A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A']],
@@ -125,4 +127,31 @@ export class MusicData {
         ['VII*', 8.33],
         ['M7', 8.33]
     ];
+
+    readonly keyMoods: Map<string, string> = new Map([
+        ['A', `Joyful and pastoral. A major is a key suitable for "declarations of innocent love, hope of seeing one's beloved again when parting". Youthful cheerfulness and trust in Universal Spirit. Innocent Love. Satisfaction with the current state of affairs. Optimistic. Belief in Heaven and reuniting with lost loved ones. Youthful and cheerful. Trusting in the spirit of the divine`],
+        ['Am', `Tender and melencholy/woebegone/plaintive. Pious. Womanly. Graceful in character capable of soothing`],
+        ['A#', `Magnificent and joyful. Quaint. Cheerful. Love. Clear Conscience. Hopeful Aspirations for the future and a better world. Optimistic and able to take control in order to ensure peace`],
+        ['A#m', `Obscure/enigmatic/esoteric and terrible. A quaint/bizarre/peculiar creature often dressed in the garment of night. It is somewhat surly and very seldom takes on a pleasant countenance. Mocking the Universal Spirit and the world. Discontented with itself and with everything. Preparation for suicide sounds in this key. Blasphemous turning away the world and the divine. Preparations for the end. Pessimism and giving up. Belief in darkness`],
+        ['B', `Harsh/bitter/cruel and depressed/troubled. Strong. Wild Rage. Uncontrolled passions. Anger, rage, jealousy, fury, despair, and every burden of the heart lies in its sphere. Jealous. Loaded down with negative energy. Prepared to fight. Strongly colored announcing wild passions composed from the most glaring colors`],
+        ['Bm', `Solitary and melancholic. This is as it were the key of patience of calm awaiting one's fate and of submission to divine dispensation/bestowal/conferment`],
+        ['C', `Jolly and warlike. Innocently happy. Completely pure. Simplicity and naivety. The key of children. Free of burden full of imagination. Powerful resolve. Earnestness. Can feel religious. Completely pure its character is: innocence simplicity naivety children's talk`],
+        ['Cm', `Obscure/ambigious/shadowy and sad. Innocently sad. Love-sick declarations of love or lamenting lost love or unhappy relationships. It is languishing and full of longing, a soul in search of something different`],
+        ['C#', `Fullness of tone sonority/volumne/resonance and euphony/rhythm/harmony. A leering key degenerating into grief and rapture. It cannot laugh but it can smile, it cannot howl but it can at least grimace its crying--Consequently only unusual characters and feelings can be brought out in this key`],
+        ['C#m', `Despair. Wailing. Weeping. A passionate expression of sorrow and deep grief. Full of penance and self-punishment. An intimate conversation with Universal Spirit about recognition of wrongdoing and atonement`],
+        ['D', `Joyous and very warlike. Screaming hallelujahs. Rejoicing in conquering obstacles. War marches. Holiday songs. Invitations to join the winning team`],
+        ['Dm', `Serious and pious. Melancholy. Feminine brooding. Worries. Contemplation of negativity`],
+        ['D#', `Dream like. Cruel and hard love. Devotion. Intimacy. Openness. Honest communion. Conversations with Universal Spirit`],
+        ['D#m', `Feelings of the anxiety of the soul's deepest distress. Brooding despair of blackest depression of the most gloomy condition of the inner spirit. Every fear, every hesitation of the shuddering heart breathes out of horrible D# minor. If ghosts could speak their speech would approximate this key`],
+        ['E', `Quarrelsome and boisterous. Joy magnificence splendor. Brightest and most powerful key. Shouts of joy. Agreements made despite bickering. Short-fused, ready to fight. Laughing with pleasure yet not complete delight lies in E Major`],
+        ['Em', `Effeminate and amorous. Sad/sorrowful. This key can carry grief mournfulness, restlessness, like a princess locked in a tower longing for her rescuer and future lover. This key speaks of the imminent hope of resolving in the pure happiness of C major`],
+        ['F', `Furious and quick-tempered subjects. Peace, joy, light passing regret. Religious sentiment/bias/feeling. Complaisance and controlled calmness over the readiness to explode. Deeply angry but composed and sociable still`],
+        ['Fm', `Obscure/dim/hidden and wistful/forlorn. Harrowing/agonizing distressing melancholy. Deepest depression. Lament/regret over death and loss. Groans of misery ready to expire. A longing for the grave and the funeral`],
+        ['F#', `Brilliant and very clear. Soft with richness. Conquering difficulties. Sighs of relief. Triumph over evil obstacles/hurdles. Surmounting foes and finally finding rest in victory. Dazzling clarity of thought and feeling`],
+        ['F#m', `A gloomy key, it tugs at passion as a dog biting a dress. Resentment and discontent are its language. Still capable of fighting these feelings. Tearing at your hair and shirt. Long periods of lamentation and crying`],
+        ['G', `Serious and magnificent. Fantasy. Rustic. Idyllic. Poetic. Lyrical. Calm and satisfied. Tenderness and gratitude. Friendship and faith. It is a gentle key full of peace. Picturesque and lyrical. Every serene and satisfied passion. Gratitude for true friendship and faithful love--in a word every gentle and peaceful emotion of the heart is correctly expressed by this key`],
+        ['Gm', `Discontent. Uneasiness and worry about a failed scheme. Bad-tempered gnashing of teeth. In two words: resentment and dislike`],
+        ['G#', `Key of the grave. Death. Grave putrefaction. Judgment and eternity lie in its radius. Expansive viewpoints of a dark cosmos and existence. Ghosts, ghouls, goblins, graveyards, haunting and lingering`],
+        ['G#m', `Grumbler. Heart squeezed until it suffocates. Wailing/sobbing lament/regret with adifficult struggle. In a phrase the color of this key is everything struggling with difficulty. Life-Long Struggles. A negative look at the experiences of life, competition and growth`]
+    ]);
 }
