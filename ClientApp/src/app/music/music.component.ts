@@ -1,4 +1,4 @@
-import { Component, SimpleChange, HostListener } from '@angular/core';
+import { Component, SimpleChange, HostListener, ViewChild } from '@angular/core';
 
 import { GooglePieChart, GooglePieChartOptions } from '../shared/models/google-pie-chart.model';
 import { MusicKey } from './music.models';
@@ -7,6 +7,7 @@ import { GoogleChartService } from '../shared/services/google-chart.service';
 import { CommonService } from '../shared/services/common.service';
 import { MusicData } from '../shared/data/music.data';
 import { MusicService } from '../shared/services/music-key.service';
+import { KeyInfoComponent } from './key-info/key-info.component';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { MusicService } from '../shared/services/music-key.service';
 })
 
 export class MusicComponent {
+
+    @ViewChild('keyInfo', {static: false}) keyInfo: KeyInfoComponent;
 
     currentChartDimension = 600;
     musicData: MusicData = new MusicData();
@@ -80,7 +83,7 @@ export class MusicComponent {
     }
 
     handleKeyVersionSelected(keyType: string) {
-        
+
         this.setMusicKeyVisualData(keyType);
 
         if (keyType === 'minor') {
@@ -88,13 +91,15 @@ export class MusicComponent {
             this.musicService.setShowingMajorKey(false);
             this.musicService.setKeyOmmissions('minor');
             this.updateKeyVisualizationColors(this.musicService.keyOmissionIndices);
+            this.keyInfo.updateKeyMoodText(`${this.musicService.rootNote}m`);
             return;
         }
 
         this.musicService.setMajorIntervalInitialState();
         this.musicService.setShowingMajorKey(true);
         this.musicService.setKeyOmmissions();
-        this.updateKeyVisualizationColors(this.musicService.keyOmissionIndices);
+        this.updateKeyVisualizationColors(this.musicService.keyOmissionIndices);2
+        this.keyInfo.updateKeyMoodText(`${this.musicService.rootNote}`);
     }
 
     handleIntervalClick(interval: string, index: number) {
