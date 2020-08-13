@@ -32,6 +32,7 @@
         <div class="panel panel-default">
             <h3 *ngIf="musicService.showingMajorKey">{{musicService.rootNote}} Major Key:</h3>
             <h3 *ngIf="!musicService.showingMajorKey">{{musicService.rootNote}} Minor Key:</h3>
+            <!-- should have tooltips that show the note -->
             <google-chart #scaleChart
                           [type]="musicKeyVisual.type"
                           [data]="musicKeyVisual.data"
@@ -118,15 +119,14 @@
 </div>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-10">
         <fretboard [musicKey]="musicService.musicKey$ | async"
                    [intervalState]="musicService.intervalState"></fretboard>
     </div>
-</div>
-<div class="row" style="margin-bottom: 15rem; margin-top: 2rem;">
-    <div class="col-12">
+    <div class="col-2">
         <key-info #keyInfo [musicKey]="musicService.musicKey$ | async"></key-info>
     </div>
 </div>
+
 
 

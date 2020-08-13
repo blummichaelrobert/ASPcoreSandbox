@@ -1,28 +1,10 @@
-<h3><i class="fab fa-draft2digital"></i>Chord Progressions:</h3>
+<h3>Chord Progression: {{chordProgressionHeader}}</h3>
 <google-chart #scaleChart
               [type]="type"
               [data]="data"
               [options]="chartOptions">
 </google-chart>
 <div class="row">
-    <div *ngIf="showingMajorKey"
-         class="col-12">
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])">
-            I IV V
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Major6th', 'Perfect4th', 'Perfect5th'])">
-            I vi IV V
-        </button>
-        <button type="button"
-                class="btn btn-secondary float-right"
-                (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">
-            ii V I
-        </button>
-    </div>
     <div *ngIf="!showingMajorKey"
          class="col-12">
         <button type="button"
@@ -43,24 +25,6 @@
     </div>
 </div>
 <div class="row">
-    <div *ngIf="showingMajorKey"
-         class="col-12">
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Major6th', 'Major2nd', 'Perfect5th'])">
-            I vi ii V
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Perfect5th', 'Major6th', 'Perfect4th'])">
-            I V vi IV
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major6th', 'Perfect5th'])">
-            I IV vi V
-        </button>
-    </div>
     <div *ngIf="!showingMajorKey"
          class="col-12">
         <button type="button"
@@ -81,24 +45,6 @@
     </div>
 </div>
 <div class="row">
-    <div *ngIf="showingMajorKey"
-         class="col-12">
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Major3rd', 'Perfect4th'])">
-            I iii IV
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Root', 'Perfect5th'])">
-            I IV I V
-        </button>
-        <button type="button"
-                class="btn btn-secondary"
-                (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major2nd', 'Perfect5th'])">
-            I IV ii V
-        </button>
-    </div>
     <div *ngIf="!showingMajorKey"
          class="col-12">
         <button type="button"
@@ -118,3 +64,20 @@
         </button>
     </div>
 </div>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="commonProgDD" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Common Progressions
+    </button>
+    <div class="dropdown-menu" aria-labelledby="commonProgDD">
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])">I IV V</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major6th', 'Perfect4th', 'Perfect5th'])">I vi IV V</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">ii V I</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major6th', 'Major2nd', 'Perfect5th'])">I vi ii V</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect5th', 'Major6th', 'Perfect4th'])">I V vi IV</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major6th', 'Perfect5th'])">I IV vi V</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major3rd', 'Perfect4th'])">I iii IV</button>
+        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Root', 'Perfect5th'])">  I IV I V</button>
+      <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major2nd', 'Perfect5th'])"> I IV ii V</button>
+    </div>
+  </div>

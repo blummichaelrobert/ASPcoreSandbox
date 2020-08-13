@@ -79,6 +79,26 @@ export class MusicData {
         [11, 'showingMajor7']
     ]);
 
+    readonly majorIntervalNameToNumeralMap: Map<string, string> = new Map([
+        ['Root', 'I'],
+        ['Major2nd', 'ii'],
+        ['Major3rd', 'iii'],
+        ['Perfect4th', 'IV'],
+        ['Perfect5th', 'V'],
+        ['Major6th', 'iv'],
+        ['Major7th', 'dIV']
+    ]);
+
+    readonly minorIntervalNameToNumeralMap: Map<string, string> = new Map([
+        ['Root', 'i'],
+        ['Major2nd', 'dii'],
+        ['minor3rd', 'III'],
+        ['Perfect4th', 'iv'],
+        ['Perfect5th', 'v'],
+        ['minor6th', 'VI'],
+        ['minor7th', 'VII']
+    ]);
+
     readonly KeyPickerDataSet = [
         ['A', 8.33],
         ['A#', 8.33],

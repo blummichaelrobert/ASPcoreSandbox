@@ -19,4 +19,8 @@ export class MusicDataService {
         const moodText = this.musicData.keyMoods.get(key);
         return moodText.split('.');
     }
+
+    getMajorRomanNumeral(interval: string): string {
+        return this.musicData.majorIntervalNameToNumeralMap.get(interval);
+    }
 }

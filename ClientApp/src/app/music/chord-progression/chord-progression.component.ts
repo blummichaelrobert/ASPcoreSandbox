@@ -4,6 +4,7 @@ import { GoogleChartService } from '../../shared/services/google-chart.service';
 import {  GooglePieChartOptions } from '../../shared/models/google-pie-chart.model';
 import { MusicKey } from '../music.models';
 import { MusicService } from 'src/app/shared/services/music-key.service';
+import { MusicDataService } from 'src/app/shared/services/music-data.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { MusicService } from 'src/app/shared/services/music-key.service';
 })
 
 export class ChordProgressionComponent {
-
+    // todo: clean this class starting with these properties.
     @Input() musicKey: MusicKey;
     @Input() showingMajorKey: boolean;
 
@@ -22,8 +23,11 @@ export class ChordProgressionComponent {
     data: (string | number)[][];
     type = 'PieChart';
 
+    chordProgressionHeader = 'I IV V';
+
     constructor(private googleChartService: GoogleChartService,
-                private musicService: MusicService) { }
+                private musicService: MusicService,
+                private musicDataService: MusicDataService) { }
 
     ngOnInit() {
     }
@@ -60,15 +64,24 @@ export class ChordProgressionComponent {
 
     handleProgressionSelected(intervals: string[]) {
 
+        this.mapIntervalNameToRomanNumeralEquivalent(intervals);
+
         this.setChartData(intervals);
 
         this.setChartOptions(this.getBackgroundColors(intervals), this.determineStartAngle(intervals));
     }
 
+    mapIntervalNameToRomanNumeralEquivalent(intervals: string[]) {
+        this.chordProgressionHeader = '';
+        intervals.forEach(interval => {
+            this.chordProgressionHeader += ` ${this.musicDataService.getMajorRomanNumeral(interval)}`;
+        });
+    }
+
     setChartData(intervals: string[]) {
         const dataRequest: string[] = [];
         intervals.forEach(interval => {
-            const note = this.musicKey[interval]
+            const note = this.musicKey[interval];
             dataRequest.push(note);
         });
 

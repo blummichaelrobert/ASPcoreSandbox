@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChange } from "@angular/core";
 import { MusicKey } from "../music.models";
 import { MusicData } from '../../shared/data/music.data';
-import { MusicDataService } from '../../shared/services/musicData.service';
+import { MusicDataService } from '../../shared/services/music-data.service';
 import {MusicService} from '../../shared/services/music-key.service';
 
 @Component({
