@@ -52,16 +52,16 @@ export class MusicData {
     readonly colorMap: Map<string, string> = new Map([
         ['A', '#ff0000'],
         ['A#', '#ff3300'],
-        ['B', '#ff6500'],
-        ['C', '#f9ed03'],
-        ['C#', '#b6f903'],
-        ['D', '#059c0e'],
-        ['D#', '#04d67b'],
-        ['E', '#00e6c2'],
-        ['F', '#0000ff'],
-        ['F#', '#5a01ff'],
-        ['G', '#ab00ff'],
-        ['G#', '#e6008e']
+        ['B', '#ff6600'],
+        ['C', '#f7ea21'],
+        ['C#', '#b3ff00'],
+        ['D', '#0fbf11'],
+        ['D#', '#00ff92'],
+        ['E', '#00f7f7'],
+        ['F', '#3d00ff'],
+        ['F#', '#6f00ff'],
+        ['G', '#9400d3'],
+        ['G#', '#df00d3']
     ]);
 
     readonly intervalMap: Map<number, string> = new Map([
@@ -85,7 +85,7 @@ export class MusicData {
         ['Major3rd', 'iii'],
         ['Perfect4th', 'IV'],
         ['Perfect5th', 'V'],
-        ['Major6th', 'iv'],
+        ['Major6th', 'vi'],
         ['Major7th', 'dIV']
     ]);
 
