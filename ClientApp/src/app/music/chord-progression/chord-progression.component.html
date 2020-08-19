@@ -1,40 +1,67 @@
-<h3>Chord Progression: {{chordProgressionHeader}}</h3>
-<google-chart #scaleChart
-              [type]="type"
-              [data]="data"
-              [options]="chartOptions">
-</google-chart>
+<div class="row">
+    <div class="col-8 card">
+        <h3>Chord Progression:</h3>
+        <h3>{{chordProgressionHeader}}</h3>
 
-<div *ngIf="showingMajorKey" class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="commonProgDDmajor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Common Progressions
-    </button>
-    <div *ngIf="showingMajorKey" class="dropdown-menu" aria-labelledby="commonProgDDmajor">
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])">I IV V</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major6th', 'Perfect4th', 'Perfect5th'])">I vi IV V</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">ii V I</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major6th', 'Major2nd', 'Perfect5th'])">I vi ii V</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect5th', 'Major6th', 'Perfect4th'])">I V vi IV</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major6th', 'Perfect5th'])">I IV vi V</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Major3rd', 'Perfect4th'])">I iii IV</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Root', 'Perfect5th'])">I IV I V</button>
-      <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major2nd', 'Perfect5th'])">I IV ii V</button>
+        <google-chart #scaleChart
+                    [type]="type"
+                    [data]="data"
+                    [options]="chartOptions">
+        </google-chart>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <button type="button">
+                        I
+                    </button>
+                    <button type="button">
+                        ii
+                    </button>
+                    <button type="button">
+                        iii
+                    </button>
+                    <button type="button">
+                        IV
+                    </button>
+                    <button type="button">
+                        VI
+                    </button>
+                    <button type="button">
+                        vi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 card">
+        Common Progressions
+        <div *ngIf="showingMajorKey" class="dropdown">
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])">I IV V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Major6th', 'Perfect4th', 'Perfect5th'])">I vi IV V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">ii V I</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Major6th', 'Major2nd', 'Perfect5th'])">I vi ii V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect5th', 'Major6th', 'Perfect4th'])">I V vi IV</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major6th', 'Perfect5th'])">I IV vi V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Major3rd', 'Perfect4th'])">I iii IV</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Root', 'Perfect5th'])">I IV I V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major2nd', 'Perfect5th'])">I IV ii V</button>
+        </div>
+        
+        <div *ngIf="!showingMajorKey" class="dropdown">
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'minor6th', 'minor7th'])">i VI VII</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'minor7th'])"> i iv VII</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])"> i iv v</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'minor6th', 'minor3rd', 'minor7th'])">i VI III VII</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">ii v i</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'minor6th'])">i iv vi</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['minor6th', 'minor7th', 'Root'])">VI VII i</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'minor7th', 'minor6th', 'minor7th'])">i VII VI VII</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'minor7th', 'minor6th'])">i VIIb7 VIb7</button>
+        </div>
     </div>
 </div>
 
-<div *ngIf="!showingMajorKey" class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" id="commonProgDDminor" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Common Progressions
-    </button>
-    <div class="dropdown-menu" aria-labelledby="commonProgDDminor">
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'minor6th', 'minor7th'])">i VI VII</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'minor7th'])"> i iv VII</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])"> i iv v</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'minor6th', 'minor3rd', 'minor7th'])">i VI III VII</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Major2nd', 'Perfect5th', 'Root'])">ii v i</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'minor6th'])">i iv vi</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['minor6th', 'minor7th', 'Root'])">VI VII i</button>
-        <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'minor7th', 'minor6th', 'minor7th'])">i VII VI VII</button>
-      <button class="dropdown-item" type="button" (click)="handleProgressionSelected(['Root', 'minor7th', 'minor6th'])">i VIIb7 VIb7</button>
-    </div>
-</div>
+
+
+
