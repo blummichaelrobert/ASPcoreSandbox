@@ -23,4 +23,8 @@ export class MusicDataService {
     getMajorRomanNumeral(interval: string): string {
         return this.musicData.majorIntervalNameToNumeralMap.get(interval);
     }
+
+    getMinorRomanNumeral(interval: string): string {
+        return this.musicData.minorIntervalNameToNumeralMap.get(interval);
+    }
 }

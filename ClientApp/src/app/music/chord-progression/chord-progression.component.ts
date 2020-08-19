@@ -73,6 +73,14 @@ export class ChordProgressionComponent {
 
     mapIntervalNameToRomanNumeralEquivalent(intervals: string[]) {
         this.chordProgressionHeader = '';
+
+        if (!this.showingMajorKey) {
+            intervals.forEach(interval => {
+                this.chordProgressionHeader += ` ${this.musicDataService.getMinorRomanNumeral(interval)}`;
+            });
+            return;
+        }
+
         intervals.forEach(interval => {
             this.chordProgressionHeader += ` ${this.musicDataService.getMajorRomanNumeral(interval)}`;
         });
