@@ -11,26 +11,14 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <button type="button">
-                        I
-                    </button>
-                    <button type="button">
-                        ii
-                    </button>
-                    <button type="button">
-                        iii
-                    </button>
-                    <button type="button">
-                        IV
-                    </button>
-                    <button type="button">
-                        VI
-                    </button>
-                    <button type="button">
-                        vi
-                    </button>
-                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">I</button>
+                    <button type="button" class="btn btn-secondary">ii</button>
+                    <button type="button" class="btn btn-secondary">iii</button>
+                    <button type="button" class="btn btn-secondary">IV</button>
+                    <button type="button" class="btn btn-secondary">V</button>
+                    <button type="button" class="btn btn-secondary">vi</button>
+                  </div>
             </div>
         </div>
     </div>
@@ -44,7 +32,7 @@
             <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect5th', 'Major6th', 'Perfect4th'])">I V vi IV</button>
             <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major6th', 'Perfect5th'])">I IV vi V</button>
             <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Major3rd', 'Perfect4th'])">I iii IV</button>
-            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Root', 'Perfect5th'])">I IV I V</button>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Major6th', 'Perfect4th', 'Root'])">I vi IV I</button>
             <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Major2nd', 'Perfect5th'])">I IV ii V</button>
         </div>
         

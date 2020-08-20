@@ -57,3 +57,21 @@
     border-top-right-radius: 5;
     border-bottom-right-radius: 5;
 }
+
+.row.display-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .row.display-flex > [class*='col-'] {
+    flex-grow: 1;
+  }
+  
+  /* only for demo not required */
+  .box {
+      height: 100%;
+  }
+  
+  .row.display-flex [class*='col-'] {
+      background-color: #efefef;
+  }
+  
