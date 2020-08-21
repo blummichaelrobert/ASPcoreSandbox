@@ -135,22 +135,25 @@ export class MusicService {
 
     chordProgressionInterval(interval: string): string[] {
         if (interval === 'Root') {
-            return ['Perfect5th'];
+            return ['Major2nd', 'Major3rd', 'Perfect4th', 'Perfect5th', 'Major6th'];
         }
         if (interval === 'Major2nd') {
-            return ['Perfect5', 'Major3'];
+            return ['Root', 'Perfect4th', 'Perfect5th', 'Major6th'];
         }
         if (interval === 'Major3rd') {
-            return ['Perfect4', 'Major6'];
+            return ['Root', 'Perfect5th', 'Major6th', 'Major7th'];
         }
         if (interval === 'Perfect4th') {
-            return ['Major2', 'Perfect5'];
+            return ['Root', 'Major2nd', 'Perfect5th', 'Major6th'];
         }
-        if (interval === 'Perfect5') {
-            return ['Root', 'Major3'];
+        if (interval === 'Perfect5th') {
+            return ['Root', 'Major2nd', 'Major3rd', 'Perfect5th'];
         }
         if (interval === 'Major6th') {
-            return ['Perfect4'];
+            return ['Root', 'Major2nd', 'Major3rd', 'Perfect4th'];
+        }
+        if (interval === 'Major7th') {
+            return ['Root', 'Major3rd'];
         }
     }
 }
