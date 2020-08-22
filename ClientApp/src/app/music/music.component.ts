@@ -21,7 +21,7 @@ export class MusicComponent {
 
     @ViewChild('keyInfo', {static: false}) keyInfo: KeyInfoComponent;
 
-    currentChartDimension = 600;
+    currentChartDimension = 0;
     musicData: MusicData = new MusicData();
     showingCircleOf5ths = false;
 
@@ -145,7 +145,7 @@ export class MusicComponent {
     onResize(event) {
         const screenWidth = event.target.innerWidth;
 
-        this.currentChartDimension = screenWidth / 3.44;
+        this.currentChartDimension = screenWidth / 4.75;
 
         const kpBGColors = this.googleChartService.defaultOptions.colors;
         let bgColors = this.musicService.getCurrentBackgroundColors();
