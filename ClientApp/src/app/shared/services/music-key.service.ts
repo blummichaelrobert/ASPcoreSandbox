@@ -44,6 +44,30 @@ export class MusicService {
 
     getMusicKey(): MusicKey { return this.musicKey$.getValue(); }
 
+    getNextMajorChordProgressionIntervals(interval: string): string[] {
+        if (interval === 'Root') {
+            return ['Major2nd', 'Major3rd', 'Perfect4th', 'Perfect5th', 'Major6th', 'Major7th'];
+        }
+        if (interval === 'Major2nd') {
+            return ['Root', 'Perfect4th', 'Perfect5th', 'Major6th'];
+        }
+        if (interval === 'Major3rd') {
+            return ['Root', 'Perfect5th', 'Major6th', 'Major7th'];
+        }
+        if (interval === 'Perfect4th') {
+            return ['Root', 'Major2nd', 'Perfect5th', 'Major6th'];
+        }
+        if (interval === 'Perfect5th') {
+            return ['Root', 'Major2nd', 'Major3rd', 'Major7th'];
+        }
+        if (interval === 'Major6th') {
+            return ['Root', 'Major2nd', 'Major3rd', 'Perfect4th'];
+        }
+        if (interval === 'Major7th') {
+            return ['Root', 'Major3rd'];
+        }
+    }
+
     nextMusicKey(rawMusicKey: string[]) {
 
         this.musicKey$.next(this.setMusicKeyProps(rawMusicKey));
@@ -131,29 +155,5 @@ export class MusicService {
 
     toggleServiceIntervalStateProperty(property: string) {
         this.intervalState[property] = !this.intervalState[property];
-    }
-
-    chordProgressionInterval(interval: string): string[] {
-        if (interval === 'Root') {
-            return ['Major2nd', 'Major3rd', 'Perfect4th', 'Perfect5th', 'Major6th'];
-        }
-        if (interval === 'Major2nd') {
-            return ['Root', 'Perfect4th', 'Perfect5th', 'Major6th'];
-        }
-        if (interval === 'Major3rd') {
-            return ['Root', 'Perfect5th', 'Major6th', 'Major7th'];
-        }
-        if (interval === 'Perfect4th') {
-            return ['Root', 'Major2nd', 'Perfect5th', 'Major6th'];
-        }
-        if (interval === 'Perfect5th') {
-            return ['Root', 'Major2nd', 'Major3rd', 'Perfect5th'];
-        }
-        if (interval === 'Major6th') {
-            return ['Root', 'Major2nd', 'Major3rd', 'Perfect4th'];
-        }
-        if (interval === 'Major7th') {
-            return ['Root', 'Major3rd'];
-        }
     }
 }

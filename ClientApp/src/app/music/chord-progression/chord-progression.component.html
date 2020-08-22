@@ -13,17 +13,43 @@
             <div class="col-12">
                 <!-- radio button for default vs chord prog with logic -->
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">I</button>
-                    <button type="button" class="btn btn-secondary">ii</button>
-                    <button type="button" class="btn btn-secondary">iii</button>
-                    <button type="button" class="btn btn-secondary">IV</button>
-                    <button type="button" class="btn btn-secondary">V</button>
-                    <button type="button" class="btn btn-secondary">vi</button>
+                    <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.RootSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('Root')" >I</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.SecondIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('SecondInterval')" >ii</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.ThirdIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('ThirdInterval')" >iii</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.FourthIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('FourthInterval')" >IV</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.FifthIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('FifthInterval')" >V</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.SixthIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('SixthInterval')" >vi</button>
+                            <button type="button" 
+                            class="btn btn-secondary"
+                            [ngClass]="chordProgressionState.SeventhIntervalSelected ? 'selected-chord-prog' : 'unSelected-chord-prog'" 
+                            (click)="handleChordProgressionBtnClick('SeventhInterval')" >dim</button>
+                            <button type="button" 
+                            class="btn btn-primary"
+                            (click)="resetChordProgressionButtons()" ><i class="fas fa-history"></i></button>
                   </div>
             </div>
         </div>
     </div>
     <div class="col-4 card">
+        <!-- common progressions by music genre -->
         Common Progressions
         <div *ngIf="showingMajorKey" class="dropdown">
             <button type="button" class="btn btn-primary btn-block" (click)="handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th'])">I IV V</button>

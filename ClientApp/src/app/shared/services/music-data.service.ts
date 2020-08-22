@@ -27,4 +27,20 @@ export class MusicDataService {
     getMinorRomanNumeral(interval: string): string {
         return this.musicData.minorIntervalNameToNumeralMap.get(interval);
     }
+
+    getMajorIntervalWithGenericKey(key: string): string {
+        return this.musicData.genericIntervalToMajorIntervalMap.get(key);
+    }
+
+    getGenericIntervalWithMajorIntervalValue(specificInterval: string): string {
+        const mapValues = [... this.musicData.genericIntervalToMajorIntervalMap.values()];
+
+        const y =  mapValues.find(value => value === specificInterval);
+
+        const mapEntries = [... this.musicData.genericIntervalToMajorIntervalMap.entries()];
+
+        const genericInterval = mapEntries.find(entry => entry[1] === specificInterval);
+
+        return genericInterval[0];
+    }
 }

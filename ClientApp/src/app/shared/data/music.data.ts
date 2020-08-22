@@ -157,7 +157,7 @@ export class MusicData {
         ['Bm', `Solitary and melancholic. This is as it were the key of patience of calm. Awaiting one's fate and of submission to divine dispensation/bestowal/conferment`],
         ['C', `Jolly and warlike. Innocently happy. Completely pure. Simplicity and naivety. The key of children. Free of burden full of imagination. Powerful resolve. Earnestness. Can feel religious. Completely pure its character is: innocence simplicity naivety children's talk`],
         ['Cm', `Obscure/ambigious/shadowy and sad. Innocently sad. Love-sick declarations of love or lamenting lost love or unhappy relationships. It is languishing and full of longing, a soul in search of something different`],
-        ['C#', `Fullness of tone sonority/volumne/resonance and euphony/rhythm/harmony. A leering key degenerating into grief and rapture. It cannot laugh but it can smile, it cannot howl but it can at least grimace its crying--Consequently only unusual characters and feelings can be brought out in this key`],
+        ['C#', `Fullness of tone sonority/volume/resonance and euphony/rhythm/harmony. A leering key degenerating into grief and rapture. It cannot laugh but it can smile, it cannot howl but it can at least grimace its crying--Consequently only unusual characters and feelings can be brought out in this key`],
         ['C#m', `Despair. Wailing. Weeping. A passionate expression of sorrow and deep grief. Full of penance and self-punishment. An intimate conversation with Universal Spirit about recognition of wrongdoing and atonement`],
         ['D', `Joyous and very warlike. Screaming hallelujahs. Rejoicing in conquering obstacles. War marches. Holiday songs. Invitations to join the winning team`],
         ['Dm', `Serious and pious. Melancholy. Feminine brooding. Worries. Contemplation of negativity`],
@@ -173,5 +173,27 @@ export class MusicData {
         ['Gm', `Discontent. Uneasiness and worry about a failed scheme. Bad-tempered gnashing of teeth. In two words: resentment and dislike`],
         ['G#', `Key of the grave. Death. Grave putrefaction. Judgment and eternity lie in its radius. Expansive viewpoints of a dark cosmos and existence. Ghosts, ghouls, goblins, graveyards, haunting and lingering`],
         ['G#m', `Grumbler. Heart squeezed until it suffocates. Wailing/sobbing lament/regret with adifficult struggle. In a phrase the color of this key is everything struggling with difficulty. Life-Long Struggles. A negative look at the experiences of life, competition and growth`]
+    ]);
+
+    // todo: see if I can remove all needed html this.showingMajor key logic by making app more data driven
+    // make more data driven by using tables like the one below...
+    readonly genericIntervalToMajorIntervalMap: Map<string, string> = new Map([
+        ['Root', 'Root'],
+        ['SecondInterval', 'Major2nd'],
+        ['ThirdInterval', 'Major3rd'],
+        ['FourthInterval', 'Perfect4th'],
+        ['FifthInterval', 'Perfect5th'],
+        ['SixthInterval', 'Major6th'],
+        ['SeventhInterval', 'Major7th']
+    ]);
+
+    readonly genericIntervalToMinorIntervalMap: Map<string, string> = new Map([
+        ['Root', 'Root'],
+        ['SecondInterval', 'Major2nd'],
+        ['ThirdInterval', 'minor3rd'],
+        ['FourthInterval', 'Perfect4th'],
+        ['FifthInterval', 'Perfect5th'],
+        ['SixthInterval', 'minor6th'],
+        ['SeventhInterval', 'minor7th']
     ]);
 }
