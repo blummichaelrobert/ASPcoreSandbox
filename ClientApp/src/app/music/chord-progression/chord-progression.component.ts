@@ -130,6 +130,13 @@ export class ChordProgressionComponent {
         this.chordProgressionState = this.chordProgressionState.resetChordProgressionState();
         this.chosenChordProgressionIntervals = [];
         this.chosenChordProgressionColors = [];
+
+        if (!this.showingMajorKey) {
+          this.chordProgressionState.setButtonLabelsToMinorKey();
+          return;
+        }
+
+        this.chordProgressionState.setButtonLabelsToMajorKey();
     }
 
     setChartData(intervals: string[]) {
