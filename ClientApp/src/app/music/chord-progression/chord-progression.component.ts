@@ -51,21 +51,35 @@ export class ChordProgressionComponent {
     handleChordProgressionBtnClick(genericInterval: string) {
         this.chordProgressionState = this.chordProgressionState.resetChordProgressionState();
 
-        const keyTypeSpecific_Interval = this.musicDataService.getMajorIntervalWithGenericKey(genericInterval);
-        this.chosenChordProgressionIntervals.push(keyTypeSpecific_Interval);
+        let keyTypeSpecific_Interval = '';
 
-        const color = this.getBackgroundColors([keyTypeSpecific_Interval]);
-        this.chosenChordProgressionColors.push(color[0]);
+        if (this.showingMajorKey.valueOf() === true) {
+            keyTypeSpecific_Interval =  this.musicDataService.getMajorIntervalWithGenericKey(genericInterval);
+            this.chosenChordProgressionIntervals.push(keyTypeSpecific_Interval);
 
-        this.setChartData(this.chosenChordProgressionIntervals);
-        this.setChartOptions(this.chosenChordProgressionColors, this.determineStartAngle(this.chosenChordProgressionIntervals));
-        this.mapIntervalNameToRomanNumeralEquivalent(this.chosenChordProgressionIntervals);
+            const eligibleIntervals = this.musicService.getNextMajorChordProgressionIntervals(keyTypeSpecific_Interval);
+            eligibleIntervals.forEach(interval => {
+                interval = this.musicDataService.getGenericIntervalWithMajorIntervalValue(interval);
+                this.chordProgressionState.setProgressionIntervalState(interval, true);
+            });
+        } else {
 
-        const eligibleIntervals = this.musicService.getNextMajorChordProgressionIntervals(keyTypeSpecific_Interval);
-        eligibleIntervals.forEach(interval => {
-            interval = this.musicDataService.getGenericIntervalWithMajorIntervalValue(interval);
-            this.chordProgressionState.setProgressionIntervalState(interval, true);
-        });
+            keyTypeSpecific_Interval =  this.musicDataService.getMinorIntervalWithGenericKey(genericInterval);
+            this.chosenChordProgressionIntervals.push(keyTypeSpecific_Interval);
+
+            const eligibleIntervals = this.musicService.getNextMinorChordProgressionIntervals(keyTypeSpecific_Interval);
+            eligibleIntervals.forEach(interval => {
+                interval = this.musicDataService.getGenericIntervalWithMinorIntervalValue(interval);
+                this.chordProgressionState.setProgressionIntervalState(interval, true);
+            });
+        }
+
+        const color = this.getBackgroundColors([keyTypeSpecific_Interval]); // same
+        this.chosenChordProgressionColors.push(color[0]); // same
+
+        this.setChartData(this.chosenChordProgressionIntervals); // same
+        this.setChartOptions(this.chosenChordProgressionColors, this.determineStartAngle(this.chosenChordProgressionIntervals)); // same
+        this.mapIntervalNameToRomanNumeralEquivalent(this.chosenChordProgressionIntervals); // same
     }
 
     determineStartAngle(intervals: string[]): number {
@@ -140,6 +154,7 @@ export class ChordProgressionComponent {
     }
 }
 
+// todo: use this class to keep track of labels on buttons => major vs minor.
 export class ChordProgressionState {
     RootSelected: boolean;
     SecondIntervalSelected: boolean;

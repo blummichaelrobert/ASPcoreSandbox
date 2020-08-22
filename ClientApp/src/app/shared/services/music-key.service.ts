@@ -68,6 +68,30 @@ export class MusicService {
         }
     }
 
+    getNextMinorChordProgressionIntervals(interval: string): string[] {
+        if (interval === 'Root') {
+            return ['Major2nd', 'minor3rd', 'Perfect4th', 'Perfect5th', 'minor6th', 'minor7th'];
+        }
+        if (interval === 'Major2nd') {
+            return ['Root', 'Perfect4th', 'Perfect5th'];
+        }
+        if (interval === 'minor3rd') {
+            return ['Root', 'minor6th', 'minor7th'];
+        }
+        if (interval === 'Perfect4th') {
+            return ['Root', 'Major2nd', 'minor6th', 'minor7th'];
+        }
+        if (interval === 'Perfect5th') {
+            return ['Root', 'Major2nd', 'minor7th'];
+        }
+        if (interval === 'minor6th') {
+            return ['Root', 'minor3rd', 'Perfect4th'];
+        }
+        if (interval === 'minor7th') {
+            return ['Root', 'minor3rd', 'Perfect4th', 'Perfect5th'];
+        }
+    }
+
     nextMusicKey(rawMusicKey: string[]) {
 
         this.musicKey$.next(this.setMusicKeyProps(rawMusicKey));

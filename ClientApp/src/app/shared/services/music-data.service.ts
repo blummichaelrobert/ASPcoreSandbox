@@ -33,11 +33,19 @@ export class MusicDataService {
     }
 
     getGenericIntervalWithMajorIntervalValue(specificInterval: string): string {
-        const mapValues = [... this.musicData.genericIntervalToMajorIntervalMap.values()];
-
-        const y =  mapValues.find(value => value === specificInterval);
-
         const mapEntries = [... this.musicData.genericIntervalToMajorIntervalMap.entries()];
+
+        const genericInterval = mapEntries.find(entry => entry[1] === specificInterval);
+
+        return genericInterval[0];
+    }
+
+    getMinorIntervalWithGenericKey(key: string): string {
+        return this.musicData.genericIntervalToMinorIntervalMap.get(key);
+    }
+
+    getGenericIntervalWithMinorIntervalValue(specificInterval: string): string {
+        const mapEntries = [... this.musicData.genericIntervalToMinorIntervalMap.entries()];
 
         const genericInterval = mapEntries.find(entry => entry[1] === specificInterval);
 
