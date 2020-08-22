@@ -41,10 +41,12 @@ export class ChordProgressionComponent {
 
         if (!this.showingMajorKey) {
             this.handleProgressionSelected(['Root', 'minor6th', 'minor7th']);
+            this.chordProgressionState.setButtonLabelsToMinorKey();
             return;
         }
 
         this.handleProgressionSelected(['Root', 'Perfect4th', 'Perfect5th']);
+        this.chordProgressionState.setButtonLabelsToMajorKey();
     }
 
 
@@ -54,6 +56,8 @@ export class ChordProgressionComponent {
         let keyTypeSpecific_Interval = '';
 
         if (this.showingMajorKey.valueOf() === true) {
+            this.chordProgressionState.setButtonLabelsToMajorKey();
+
             keyTypeSpecific_Interval =  this.musicDataService.getMajorIntervalWithGenericKey(genericInterval);
             this.chosenChordProgressionIntervals.push(keyTypeSpecific_Interval);
 
@@ -62,7 +66,9 @@ export class ChordProgressionComponent {
                 interval = this.musicDataService.getGenericIntervalWithMajorIntervalValue(interval);
                 this.chordProgressionState.setProgressionIntervalState(interval, true);
             });
+
         } else {
+            this.chordProgressionState.setButtonLabelsToMinorKey();
 
             keyTypeSpecific_Interval =  this.musicDataService.getMinorIntervalWithGenericKey(genericInterval);
             this.chosenChordProgressionIntervals.push(keyTypeSpecific_Interval);
@@ -163,6 +169,36 @@ export class ChordProgressionState {
     FifthIntervalSelected: boolean;
     SixthIntervalSelected: boolean;
     SeventhIntervalSelected: boolean;
+    RootLabel: string;
+    SecondIntervalLabel: string;
+    ThirdIntervalLabel: string;
+    FourthIntervalLabel: string;
+    FifthIntervalLabel: string;
+    SixthIntervalLabel: string;
+    SeventhIntervalLabel: string;
+
+    constructor() {
+        this.RootSelected = true;
+        this.RootLabel = '';
+
+        this.SecondIntervalSelected = false;
+        this.SecondIntervalLabel = '';
+
+        this.ThirdIntervalSelected = false;
+        this.ThirdIntervalLabel = '';
+
+        this.FourthIntervalSelected = false;
+        this.FourthIntervalLabel = '';
+
+        this.FifthIntervalSelected = false;
+        this.FifthIntervalLabel = '';
+
+        this.SixthIntervalSelected = false;
+        this.SixthIntervalLabel = '';
+
+        this.SeventhIntervalSelected = false;
+        this.SeventhIntervalLabel = '';
+    }
 
     resetChordProgressionState(): ChordProgressionState {
         return new ChordProgressionState();
@@ -224,6 +260,30 @@ export class ChordProgressionState {
                 throwError(`ChordProgressionState Object Error: Can not find ${interval}`);
                 break;
         }
+    }
+
+    setButtonLabelsToMajorKey(): ChordProgressionState {
+        this.RootLabel = 'I';
+        this.SecondIntervalLabel = 'ii';
+        this.ThirdIntervalLabel = 'iii';
+        this.FourthIntervalLabel = 'IV';
+        this.FifthIntervalLabel = 'V';
+        this.SixthIntervalLabel = 'iv';
+        this.SeventhIntervalLabel = 'dim';
+
+        return this;
+    }
+
+    setButtonLabelsToMinorKey(): ChordProgressionState {
+        this.RootLabel = 'i';
+        this.SecondIntervalLabel = 'dim';
+        this.ThirdIntervalLabel = 'III';
+        this.FourthIntervalLabel = 'iv';
+        this.FifthIntervalLabel = 'v';
+        this.SixthIntervalLabel = 'VI';
+        this.SeventhIntervalLabel = 'VII';
+
+        return this;
     }
 
     // talking to women app => app has simulated 'woman' who has different emotions based on how you interact with her
