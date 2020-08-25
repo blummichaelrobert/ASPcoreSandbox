@@ -3,6 +3,7 @@ import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
 import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/baseball.models';
 import { GoogleChartComponent } from 'angular-google-charts';
 import { BaseballData } from './baseball.data';
+import { BaseballDataService } from './baseball.service';
 
 @Component({
     selector: 'baseball',
@@ -27,7 +28,11 @@ export class BaseballComponent {
     hittingStats: HittingStats = new HittingStats();
     pitchingStats: PitchingStats = new PitchingStats();
 
-    constructor(private baseballHTTPService: BaseballHTTPService) { }
+    chosenPlayer: BaseballPlayer = new BaseballPlayer();
+    selectedPlayers: BaseballPlayer[] = [];
+
+    constructor(private baseballHTTPService: BaseballHTTPService,
+                private baseballDataService: BaseballDataService) { }
 
     ngOnInit() { }
 
@@ -192,5 +197,42 @@ export class BaseballComponent {
 
     onSelect(event: any) {
         console.log(event);
+        console.log(event['selection'][0]['row']);
+        console.log(this.playerGrid);
+
+        const playerKey = event['selection'][0]['row'];
+
+        const playerRawData = this.playerGrid.data[playerKey];
+        console.log(playerRawData);
+        this.chosenPlayer = {
+            firstName: playerRawData[0].toString(),
+            heightWeight: playerRawData[1].toString(),
+            teamId: this.baseballDataService.getTeamCodeFromTeamName(playerRawData[2].toString()),
+            atBats: playerRawData[3].toString(),
+            battingAverage: playerRawData[4].toString(),
+            homeRuns: playerRawData[5].toString(),
+            runsBattedIn: playerRawData[6].toString(),
+            onBasePercentage: playerRawData[7].toString(),
+            hits: playerRawData[8].toString(),
+            doubles: playerRawData[9].toString(),
+            triples: playerRawData[10].toString()
+        };
+
+        console.log(this.chosenPlayer);
+    }
+
+    selectPlayer() {
+
     }
 }
+// 0: "Rafael Devers"
+// 1: "6ft 0in - 240 lbs."
+// 2: "Boston Red Sox"
+// 3: "647"
+// 4: ".311"
+// 5: "32"
+// 6: "115"
+// 7: ".361"
+// 8: "201"
+// 9: "54"
+// 10: "4"
