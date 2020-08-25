@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BaseballComponent } from './baseball.component';
 import { CommonModule } from '@angular/common';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { BaseballDataService } from './baseball.service';
 
 @NgModule({
       imports: [
@@ -9,7 +10,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
         GoogleChartsModule
       ],
       declarations: [BaseballComponent],
-      providers: []
+      providers: [BaseballDataService]
   })
 
   export class BaseballModule {}

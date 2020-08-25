@@ -58,7 +58,7 @@ export class MusicService {
             return ['Root', 'Major2nd', 'Perfect5th', 'Major6th'];
         }
         if (interval === 'Perfect5th') {
-            return ['Root', 'Major2nd', 'Major3rd', 'Major7th'];
+            return ['Root', 'Major2nd', 'Major3rd', 'Major6th', 'Major7th'];
         }
         if (interval === 'Major6th') {
             return ['Root', 'Major2nd', 'Major3rd', 'Perfect4th'];

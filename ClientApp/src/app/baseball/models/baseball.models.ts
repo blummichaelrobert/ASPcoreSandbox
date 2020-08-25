@@ -1,6 +1,6 @@
 export class BaseballPlayer {
-    playerId: string;
-    teamId: string;
+    playerId?: string;
+    teamId?: string;
     firstName?: string;
     lastName?: string;
     position?: string;
