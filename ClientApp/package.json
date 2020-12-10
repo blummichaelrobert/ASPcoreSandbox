@@ -1,9 +1,9 @@
 {
   "name": "sandbox",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --watch",
     "build": "ng build",
     "build:ssr": "ng run Sandbox:server:dev",
     "test": "ng test",

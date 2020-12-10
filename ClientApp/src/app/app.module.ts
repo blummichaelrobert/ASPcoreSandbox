@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicModule } from './music/music.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BaseballModule } from './baseball/baseball.module';
+import { StarshipCommanderModule } from './starship-commander/starship-commander.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { BaseballModule } from './baseball/baseball.module';
     HttpClientModule,
     FormsModule,
     MusicModule,
-
+    StarshipCommanderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

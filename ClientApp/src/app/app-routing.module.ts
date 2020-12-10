@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BaseballComponent } from './baseball/baseball.component';
+import { StarShipCommanderContainer } from './starship-commander/starship-commander.container';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'baseball', component: BaseballComponent },
     { path: 'counter', component: CounterComponent },
     { path: 'fetch-data', component: FetchDataComponent },
-    { path: 'music', component: MusicComponent}
+    { path: 'music', component: MusicComponent},
+    { path: 'starship-commander', component: StarShipCommanderContainer}
 ];
 
 @NgModule({
