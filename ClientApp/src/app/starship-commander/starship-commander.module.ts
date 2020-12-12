@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { StarShipCommanderContainer } from "./starship-commander.container";
+import { StarShipCommanderContainer } from "./containers/starship-commander.container";
 
 @NgModule({
     declarations: [

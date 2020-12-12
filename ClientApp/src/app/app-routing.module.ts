@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BaseballComponent } from './baseball/baseball.component';
-import { StarShipCommanderContainer } from './starship-commander/starship-commander.container';
+import { StarShipCommanderContainer } from './starship-commander/containers/starship-commander.container';
 
 
 const routes: Routes = [

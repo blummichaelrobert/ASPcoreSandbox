@@ -1,0 +1,25 @@
+
+.bg {
+    /* The image used */
+    background-image: url("/assets/img/starship-commander-homepage-bg.jpeg");
+  
+    /* Full height */
+    height: 100vh;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+    color: white; 
+    font-family: 'Quantico', sans-serif;
+    text-align: center;
+}
+
+div.relative {
+    position: relative;
+    top: 23rem;
+    text-align: center;
+}
