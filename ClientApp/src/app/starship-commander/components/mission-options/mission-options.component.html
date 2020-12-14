@@ -1,0 +1,7 @@
+<ul class="heroes">
+    <li *ngFor="let mission of missions"
+      [class.selected]="mission === selectedMission"
+      (click)="onSelect(mission)">
+      <span class="badge">{{mission.id}}</span> {{mission.name}}
+    </li>
+  </ul>
