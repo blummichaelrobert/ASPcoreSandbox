@@ -1,7 +1,16 @@
-<ul class="heroes">
+<!-- <ul class="heroes">
     <li *ngFor="let mission of missions"
       [class.selected]="mission === selectedMission"
       (click)="onSelect(mission)">
       <span class="badge">{{mission.id}}</span> {{mission.name}}
     </li>
-  </ul>
+  </ul> -->
+
+  <ng-container *ngFor="let mission of missions">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2" (click)="onSelect(mission)">{{ mission.id }}</div>
+        <div class="col-10" (click)="onSelect(mission)">{{ mission.name }}</div>
+      </div>
+    </div>
+  </ng-container>

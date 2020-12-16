@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Commander Dashboard</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3" style="border: 5px solid indigo;">
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Bio
+                    </mat-panel-title>
+                    <mat-panel-description>
+                       This is the panel description.
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  {{commander.Name}}, {{commander.Height}}/{{commander.Weight}}, {{commander.Gender}}
+                </mat-expansion-panel>
+              </mat-accordion>
+        </div>
+        <div class="col-3" style="border: 5px solid red;">{{commander.Rank}}</div>
+        <div class="col-3" style="border: 5px solid blue;">{{commander.Type}}</div>
+        <div class="col-3" style="border: 5px solid brown;">Ship</div>
+    </div>
+    <div class="row">
+        <div class="col-3" style="border: 5px solid indigo;">Mental</div>
+        <div class="col-3" style="border: 5px solid red;">Charisma</div>
+        <div class="col-3" style="border: 5px solid blue;">Personality</div>
+        <div class="col-3" style="border: 5px solid brown;">Resources</div>
+    </div>
+    <div class="row">
+        <div class="col-3" style="border: 5px solid indigo;">Reputation</div>
+        <div class="col-3" style="border: 5px solid red;">Physical</div>
+        <div class="col-3" style="border: 5px solid blue;"></div>
+        <div class="col-3" style="border: 5px solid brown;"></div>
+    </div>
+    <div class="row">
+        <div class="col-5" style="border: 5px solid indigo;"></div>
+        <div class="col-2" style="border: 5px solid red;"><button [routerLink]="['/mission-select']">Mission Select</button></div>
+        <div class="col-5" style="border: 5px solid brown;"></div>
+    </div>
+</div>

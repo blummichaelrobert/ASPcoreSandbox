@@ -10,31 +10,18 @@ import { MissionsService } from "../../services/missions.service";
 
 export class MissionOptionsComponent {
 
-    @Input() missionType: string;
+    @Input() missionType: MissionType;
     
     missions: Mission[];
-    selectedMission: Mission;
 
     constructor(public missionsService: MissionsService) {}
 
     ngOnInit() {
-        switch (this.missionType) {
-            case MissionType.DIPLOMATIC:
-                this.missions = this.missionsService.DIPLOMATICMISSIONS;
-                break;
-            case MissionType.MILITARY:
-                this.missions = this.missionsService.MILITARYMISSIONS;
-                break;
-            case MissionType.SCIENTIFIC:
-                this.missions = this.missionsService.SCIENTIFICMISSIONS;
-                break;
-            default:
-                throw Error('Mission Options Component: missionType undefined');
-                break;
-        }
+        this.missions = this.missionsService.grabMissions(this.missionType);
     }
 
     onSelect(mission: Mission): void {
-        this.selectedMission = mission;
+        console.log(mission);
+        this.missionsService.selectedMission = mission;
       }
 }

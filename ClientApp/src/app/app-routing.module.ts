@@ -7,6 +7,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BaseballComponent } from './baseball/baseball.component';
 import { MissionSelectContainer } from './starship-commander/containers/mission-select/mission-select.container';
 import { StarShipCommanderTitleContainer } from './starship-commander/containers/title/sc-title.container';
+import { CommanderDashboardContainer } from './starship-commander/containers/commander-dashboard/commander-dashboard.container';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
     { path: 'fetch-data', component: FetchDataComponent },
     { path: 'music', component: MusicComponent},
     { path: 'starship-commander', component: StarShipCommanderTitleContainer},
-    { path: 'mission-select', component: MissionSelectContainer}
+    { path: 'mission-select', component: MissionSelectContainer},
+    { path: 'commander-dashboard', component: CommanderDashboardContainer}
 ];
 
 @NgModule({
