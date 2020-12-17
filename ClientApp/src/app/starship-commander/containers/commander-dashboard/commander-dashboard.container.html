@@ -1,24 +1,12 @@
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: darkgray;">
     <div class="row">
         <div class="col-12">
-            <h1>Commander Dashboard</h1>
+            <h1 style="text-align: center;">Commander Dashboard</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-3" style="border: 5px solid indigo;">
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Bio
-                    </mat-panel-title>
-                    <mat-panel-description>
-                       This is the panel description.
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  {{commander.Name}}, {{commander.Height}}/{{commander.Weight}}, {{commander.Gender}}
-                </mat-expansion-panel>
-              </mat-accordion>
+        <div class="col-3" style="border: 5px solid indigo; padding: 1rem;">
+            <expansion-panel [expansionPanelContent]="BioExpansionPanelContent"></expansion-panel>
         </div>
         <div class="col-3" style="border: 5px solid red;">{{commander.Rank}}</div>
         <div class="col-3" style="border: 5px solid blue;">{{commander.Type}}</div>
