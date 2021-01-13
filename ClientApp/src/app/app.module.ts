@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicModule } from './music/music.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BaseballModule } from './baseball/baseball.module';
+import { GameCastModule } from './baseball/gamecast/gamecast.module';
 import { StarshipCommanderModule } from './starship-commander/starship-commander.module';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { StarshipCommanderModule } from './starship-commander/starship-commander
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    GameCastModule,
     MusicModule,
     StarshipCommanderModule
   ],

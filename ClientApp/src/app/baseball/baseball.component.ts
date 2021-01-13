@@ -1,4 +1,5 @@
 import { Component, ViewChild, ɵPlayState } from '@angular/core';
+import { Router } from '@angular/router';
 import { BaseballHTTPService } from '../shared/services/baseballHTTP.service';
 import { BaseballPlayer, HittingStats, Pitcher, PitchingStats } from './models/baseball.models';
 import { GoogleChartComponent } from 'angular-google-charts';
@@ -32,7 +33,8 @@ export class BaseballComponent {
     selectedPlayers: BaseballPlayer[] = [];
 
     constructor(private baseballHTTPService: BaseballHTTPService,
-                private baseballDataService: BaseballDataService) { }
+                private baseballDataService: BaseballDataService,
+                private router: Router) { }
 
     ngOnInit() { }
 
@@ -222,7 +224,11 @@ export class BaseballComponent {
     }
 
     selectPlayer() {
+        
+    }
 
+    btnClick() {
+        this.router.navigateByUrl('/gamecast');
     }
 }
 // 0: "Rafael Devers"
